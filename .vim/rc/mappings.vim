@@ -32,3 +32,4 @@ nnoremap Q @@
 " Update tag files post-file save for selected filetypes.
 au BufWritePost *.c,*.h,*.cpp,*.hpp,*.hs,*.py,*.rb,*.sh,*.java silent! !ctags --append <afile>
 au BufWritePost *.hs silent! !hasktags --ctags --append <afile>
+au BufWritePre * :%s/\v\s+$//e

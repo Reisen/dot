@@ -20,11 +20,9 @@ Bundle 'gmarik/vundle'
 " Section: Setup Plugins
 " ------------------------------------------------------------------------------
 
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'SirVer/ultisnips'
 Bundle 'bling/vim-airline'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
+Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'justinmk/vim-sneak'
 Bundle 'majutsushi/tagbar'
@@ -32,17 +30,20 @@ Bundle 'mattn/emmet-vim'
 Bundle 'mhinz/vim-signify'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'SirVer/ultisnips'
 Bundle 'sjl/gundo.vim'
 Bundle 'skammer/vim-css-color'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 
-Bundle 'Twinside/vim-haskellConceal'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'groenewege/vim-less'
 Bundle 'lepture/vim-css'
+Bundle 'Twinside/vim-haskellConceal'
 Bundle 'wting/rust.vim'
 
 
@@ -50,7 +51,8 @@ Bundle 'wting/rust.vim'
 
 " Section: UltiSnips Settings
 " ------------------------------------------------------------------------------
-let g:UltiSnipsListSnippets="<C-P>"
+let g:UltiSnipsListSnippets="<C-Tab>"
+let g:UltiSnipsSnippetDirectories=["local_snippets"]
 
 
 

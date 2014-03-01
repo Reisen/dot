@@ -1,0 +1,60 @@
+priority 0
+extends c
+priority 1
+
+global !p
+# Bracket style awareness. Set g:ultisnips_cpp_brace_style to "nl" for brackets
+# inserted onto new lines.
+def nl(snip):
+	if snip.opt("g:ultisnips_cpp_brace_style", "") == "nl":
+		snip += ""
+	else:
+		snip.rv += " "
+
+# Newline after function type awareness. Set g:ultisnips_cpp_type_style to "nl"
+# for newlines after types.
+def tl(snip):
+	if snip.opt("g:ultisnips_cpp_type_style", "") == "nl":
+		snip += ""
+	else:
+		snip.rv += " "
+endglobal
+
+snippet #i "#include local header (inc)" b
+#include "${1:`!p snip.rv = snip.basename + '.hpp'`}"
+endsnippet
+
+snippet for "For Loop"
+for(${1:int} ${2:i} = 0; $2 < ${3:count}; ${4:++$2})`!p nl(snip)`{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet enum "Enumeration"
+enum ${1:Name}`!p nl(snip)`{
+	$0
+};
+endsnippet
+
+snippet enumclass "Enumeration Class"
+enum class ${1:Name} `!p nl(snip)`{
+	$0
+};
+endsnippet
+
+snippet class "Class"
+class ${1:Name}`!p nl(snip)`{
+	public:
+		$1();
+		$1($1 const&);
+		$1($1&&);
+		~$1();
+		$0
+};
+endsnippet
+
+snippet struct "Struct"
+struct ${1:Name}`!p nl(snip)`{
+	$0
+};
+endsnippet
