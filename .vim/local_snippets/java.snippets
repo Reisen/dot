@@ -1,0 +1,39 @@
+global !p
+def nl(snip):
+	if snip.opt("g:ultisnips_java_brace_style", "") == "nl":
+		snip += ""
+	else:
+		snip.rv += " "
+
+def tl(snip):
+	if snip.opt("g:ultisnips_java_type_style", "") == "nl":
+		snip += ""
+	else:
+		snip.rv += " "
+endglobal
+
+snippet try "Try Catch"
+try`!p nl(snip)`{
+	${VISUAL}$0
+}
+catch(${1:Exception e})`!p nl(snip)`{
+}
+endsnippet
+
+snippet catch "catch" b
+catch(${1:Exception e})`!p nl(snip)`{
+	$0
+}
+endsnippet
+
+snippet class "Java Class"
+public`!p tl(snip)`class `!p snip.rv = snip.basename or "Untitled"``!p nl(snip)`{
+	public`!p
+snip >> 1
+tl(snip)
+snip.rv += (snip.basename or "Untitled") + "()"
+nl(snip)`{
+		$0
+	}
+}
+endsnippet
