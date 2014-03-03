@@ -80,4 +80,11 @@ let g:ctrlp_match_window_bottom=0   " Put CtrlP window at the top.
 
 " Section: ag.vim Settings
 " ------------------------------------------------------------------------------
-let g:gprg="./dependencies/bin/ag --column"
+let g:agprg=$HOME . "/.vim/dependencies/bin/ag --column --smart-case"
+
+
+
+" Section: Unite Settings
+" ------------------------------------------------------------------------------
+let g:unite_source_rec_max_cache_files=0
+call unite#custom#source('file_rec/async', 'max_candidates', 0)

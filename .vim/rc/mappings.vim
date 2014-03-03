@@ -11,7 +11,7 @@ nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>a= :Tabularize /=<CR>
 nnoremap <Leader>a, :Tabularize /,\zs<CR>
-nnoremap <Leader>cf :<C-u>Unite -no-split -start-insert file_rec<CR>
+nnoremap <Leader>cf :<C-u>Unite -no-split -start-insert file_rec/async:!<CR>
 nnoremap <Leader>cg :<C-u>Unite -no-split file<CR>
 nnoremap <Leader>cu :<C-u>Unite -no-split file_mru<CR>
 nnoremap <Leader>cd :<C-u>Unite -no-split directory_mru<CR>
@@ -24,6 +24,7 @@ nnoremap <Leader>cs :<C-u>Unite -no-split grep:./<CR>
 nnoremap <Leader>cl :<C-u>Unite -no-split -start-insert line<CR>
 nnoremap <Leader>cp :<C-u>Unite -no-split -start-insert process<CR>
 nnoremap Q @@
+nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 
 
 
