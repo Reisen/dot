@@ -42,7 +42,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'groenewege/vim-less'
-Bundle 'lepture/vim-css'
 Bundle 'Twinside/vim-haskellConceal'
 Bundle 'wting/rust.vim'
 
