@@ -1,12 +1,18 @@
 ! URxvt Colours and Stuff
 ! ------------------------------------------------------------------------------
-URxvt*foreground:       #B2A191
+URxvt*foreground:       #999999
 URxvt*background:       #171717
 URxvt*borderColor:      #171717
 URxvt*cursorColor:      #C7A551
+URxvt*font:             xft:Sans:pixelsize=11:hinting=true:hintstyle=hintslight:rgba=rgb
 URxvt*font:             xft:Terminus:pixelsize=11
 URxvt*scrollstyle:      plain
 URxvt*scrollBar:        false
+URxvt*saveLines:        12000
+URxvt*cursorBlink:      true
+URxvt*cursorUnderline:  true
+
+
 
 ! Black
 URxvt*color0:           #202020
@@ -39,3 +45,37 @@ URxvt*color14:          #9FA590
 ! White
 URxvt*color7:           #B2A191
 URxvt*color15:          #E8D0C3
+
+
+
+! Black
+URxvt*color0:           #2E3436
+URxvt*color8:           #555753
+
+! Red
+URxvt*color1:           #CC0000
+URxvt*color9:           #EF2929
+
+! Green
+URxvt*color2:           #4E9A06
+URxvt*color10:          #8AE234
+
+! Yellow
+URxvt*color3:           #C4A000
+URxvt*color11:          #FCE94F
+
+! Blue
+URxvt*color4:           #3465A4
+URxvt*color12:          #729FCF
+
+! Magenta
+URxvt*color5:           #75507B
+URxvt*color13:          #AD7FA8
+
+! Cyan
+URxvt*color6:           #06989A
+URxvt*color14:          #34E2E2
+
+! White
+URxvt*color7:           #D3D7CF
+URxvt*color15:          #EEEEEC
