@@ -13,7 +13,7 @@ bindkey -e                  # Emacs Keybindings
 
 
 
-# Stuff?
+# Enable Features
 # ------------------------------------------------------------------------------
 zstyle ':completion:*' list-colors ''
 zstyle :compinstall filename '/home/reisen/.zshrc'
@@ -22,6 +22,10 @@ compinit
 
 autoload -U colors
 colors
+
+setopt prompt_subst
+autoload -U promptinit
+promptinit
 
 
 # Aliases
@@ -34,8 +38,13 @@ alias sandbox='source env/bin/activate'
 
 # Visual Stuff
 # ------------------------------------------------------------------------------
-export PS1="[%{$fg[blue]%}%1~%{$reset_color%} %m]%{$fg[blue]%}%#%{$reset_color%} "
-export RPS1="%{$fg[blue]%}E%{$reset_color%}%?-%{$fg[blue]%}J%{$reset_color%}%j-%{$fg[blue]%}H%{$reset_color%}%h"
+function check_git {
+    git branch &>/dev/null || return
+    echo -n "%{$fg[blue]%}B%{${reset_color}%}$(git rev-parse --abbrev-ref HEAD)-"
+}
+
+export PS1='[%{$fg[blue]%}%1~%{$reset_color%} %m]%{$fg[blue]%}%#%{$reset_color%} '
+export RPS1='$(check_git)%{$fg[blue]%}E%{$reset_color%}%?-%{$fg[blue]%}J%{$reset_color%}%j-%{$fg[blue]%}H%{$reset_color%}%h'
 
 
 
