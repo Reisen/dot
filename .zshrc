@@ -9,13 +9,14 @@ SAVEHIST=1000
 
 # Key Bindings
 # ------------------------------------------------------------------------------
-bindkey -v                  # Vim-ish Keybindings.
-zstyle :compinstall filename '/home/reisen/.zshrc'
+bindkey -e                  # Emacs Keybindings
 
 
 
 # Stuff?
 # ------------------------------------------------------------------------------
+zstyle ':completion:*' list-colors ''
+zstyle :compinstall filename '/home/reisen/.zshrc'
 autoload -Uz compinit
 compinit
 
