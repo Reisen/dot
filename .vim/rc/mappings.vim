@@ -33,4 +33,16 @@ nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 " Update tag files post-file save for selected filetypes.
 au BufWritePost *.c,*.h,*.cpp,*.hpp,*.hs,*.py,*.rb,*.sh,*.java silent! !ctags --append <afile>
 au BufWritePost *.hs silent! !hasktags --ctags --append <afile>
-au BufWritePre * :%s/\v\s+$//e
+
+fu! StripWhitespace()
+    if exists('b:strip_whitespace')
+        return
+    endif
+    %s/\v\s+$//e
+endf
+
+augroup BufferModifiers
+    au!
+    au FileType markdown let b:strip_whitespace=1
+    au BufWritePre * call StripWhitespace()
+augroup END
