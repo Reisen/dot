@@ -28,7 +28,9 @@ set lazyredraw                  " Don't draw while executing macros, faster.
 set list                        " Draw normally hidden characters.
 set listchars=tab:>-,trail:-    " Set hidden character replacements text.
 set number                      " Show line numbers.
-set relativenumber              " Show relative line numbers (Vim 7.4 Dual).
+if exists('&relativenumber')
+    set relativenumber              " Show relative line numbers (Vim 7.4 Dual).
+endif
 
 
 
@@ -47,6 +49,8 @@ set nohlsearch                  " Disable highlighting search results.
 " ------------------------------------------------------------------------------
 set laststatus=2                " Show status bar no matter how many wins.
 set equalalways                 " Make sure windows are always resized equally.
+set splitright                  " Put window on the right instead of in place.
+set splitbelow                  " Same deal for horizontal splits.
 
 
 
@@ -122,6 +126,8 @@ set dir=~/.vim/backup/swap      " Write all swap files away from any VCS eyes.
 
 " Section: 21 command line editing
 " ------------------------------------------------------------------------------
+set wildcharm=<C-z>
+set wildmenu
 set undofile                    " Store undo history for files, useful as hell.
 set undodir=~/.vim/backup/undo  " Store in same place as swap files.
 

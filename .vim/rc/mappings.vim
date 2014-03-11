@@ -25,6 +25,8 @@ nnoremap <Leader>cl :<C-u>Unite -no-split -start-insert line<CR>
 nnoremap <Leader>cp :<C-u>Unite -no-split -start-insert process<CR>
 nnoremap Q @@
 
+
+
 " Section: More Situational Bindings
 " ------------------------------------------------------------------------------
 " Use Ag to search for the identifier under the cursor.
@@ -33,6 +35,7 @@ nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 " Split the window into three sections and enable synced scrolling for longer
 " views of files.
 nnoremap <Leader>s :call SyncScrollFile()
+
 
 
 " Section: Autocommands
