@@ -1,4 +1,5 @@
 .PHONY: nothing setup-vim install-vim setup-base setup-post clean clean-cache
+.NOTPARALLEL: nothing setup-vim install-vim setup-base setup-post clean clean-cache
 
 
 ifeq (vim,$(findstring vim,${VIMDEPS}))
