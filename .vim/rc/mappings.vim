@@ -24,8 +24,15 @@ nnoremap <Leader>cs :<C-u>Unite -no-split grep:./<CR>
 nnoremap <Leader>cl :<C-u>Unite -no-split -start-insert line<CR>
 nnoremap <Leader>cp :<C-u>Unite -no-split -start-insert process<CR>
 nnoremap Q @@
+
+" Section: More Situational Bindings
+" ------------------------------------------------------------------------------
+" Use Ag to search for the identifier under the cursor.
 nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 
+" Split the window into three sections and enable synced scrolling for longer
+" views of files.
+nnoremap <Leader>s :call SyncScrollFile()
 
 
 " Section: Autocommands
@@ -33,13 +40,6 @@ nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 " Update tag files post-file save for selected filetypes.
 au BufWritePost *.c,*.h,*.cpp,*.hpp,*.hs,*.py,*.rb,*.sh,*.java silent! !ctags --append <afile>
 au BufWritePost *.hs silent! !hasktags --ctags --append <afile>
-
-fu! StripWhitespace()
-    if exists('b:strip_whitespace')
-        return
-    endif
-    %s/\v\s+$//e
-endf
 
 augroup BufferModifiers
     au!
