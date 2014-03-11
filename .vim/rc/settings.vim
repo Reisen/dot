@@ -29,7 +29,7 @@ set list                        " Draw normally hidden characters.
 set listchars=tab:>-,trail:-    " Set hidden character replacements text.
 set number                      " Show line numbers.
 if exists('&relativenumber')
-    set relativenumber              " Show relative line numbers (Vim 7.4 Dual).
+    set relativenumber          " Show relative line numbers (Vim 7.4 Dual).
 endif
 
 
@@ -40,7 +40,7 @@ if &t_Co > 2
     set t_Co=256                " Enable 256 Colours. Nicer looking themes.
 endif
 
-"set cursorline                  " Highlight the line the cursor is on.
+set cursorline                  " Highlight the line the cursor is on.
 set nohlsearch                  " Disable highlighting search results.
 
 
