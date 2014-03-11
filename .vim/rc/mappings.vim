@@ -34,7 +34,7 @@ nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 
 " Split the window into three sections and enable synced scrolling for longer
 " views of files.
-nnoremap <Leader>s :call SyncScrollFile()
+nnoremap <Leader>s :call SyncScrollFile()<CR>
 
 
 
