@@ -33,10 +33,7 @@ ifeq (vim,$(findstring vim,${VIMDEPS}))
 		--prefix=${HOME}/.vim/dependencies \
 		--with-features=huge \
 		--enable-pythoninterp \
-		--enable-python3interp \
 		--enable-luainterp \
-		--enable-rubyinterp \
-		--enable-gui=gtk2 \
 		--with-compiledby="Reisen <reisen@morphism.org>" &> buildlog
 	@echo "+ Building Vim (output in buildlog)"
 	@make -C build/vim74/ &>> buildlog
