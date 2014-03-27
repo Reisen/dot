@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Script to check if images saved in the current directory have names that
+# equal the MD5 hash of the file itself.
+# ------------------------------------------------------------------------------
+verified=0
+counter=0
+for f in *; do
+    if [ -f "$f" ]; then
+        hashname=$(md5sum "$f")
+        hash=${hashname:0:32}
+        name=$(basename "${hashname:34}")
+        extension=${name##*.}
+        noext=${name%.*}
+        haystack='pngPNGjpgJPGgifGIFbmpBMPjpegJPEG'
+
+        if [ -n "$name" ]; then
+            if [ $noext == $hash ]; then
+                verified=$((verified+1))
+            else
+                echo "-> Failed to verify $name: $hash."
+            fi
+        fi
+        counter=$((counter+1))
+    fi
+done
+
+failed=$((counter-verified))
+
+echo
+echo "Parsed $counter files."
+echo "Successfully verified $verified files."
+echo "Failed to verify $failed files."

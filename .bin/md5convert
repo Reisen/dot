@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Script that renames images in a directory with their hash as the filename, a
+# lot of galleries online use this naming format, saving files like this has
+# the benefit of removing duplicate images from the folder.
+# ------------------------------------------------------------------------------
+ignored=0
+counter=0
+moves=0
+hashed=0
+collides=0
+for f in *; do
+    if [ -f "$f" ]; then
+        hashname=$(md5sum "$f")
+        hash=${hashname:0:32}
+        name=$(basename "${hashname:34}")
+        extension=${name##*.}
+        noext=${name%.*}
+        haystack='pngPNGjpgJPGgifGIFbmpBMPjpegJPEG'
+
+        if [ -n "$name" ]; then
+            if [ ${#noext} -ne 32 ]; then
+                if [[ "$haystack" == *"$extension"* ]]; then
+                    if [ -f "$hash"* ]; then
+                        echo "-> File $hash.$extension already exists, ignoring $name."
+                        collides=$((collides+1))
+                    else
+                        mv "$name" "$hash.$extension"
+                        moves=$((moves+1))
+                    fi
+                else
+                    ignored=$((ignored+1))
+                fi
+            else
+#               echo "-> File $name already seems to be hashed. Not mapping."
+                hashed=$((hashed+1))
+            fi
+        fi
+        counter=$((counter+1))
+    fi
+done
+
+echo
+echo "Ignored $ignored files."
+echo "Parsed $counter files."
+echo "Successfully moved $moves files."
+echo "Found $hashed already hashed files."
+echo "Possibly $collides file collisions."

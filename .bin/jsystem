@@ -1,0 +1,107 @@
+#!/usr/bin/env python
+from subprocess import Popen, PIPE, DEVNULL
+from socket import gethostname
+from json import dumps
+
+def networking():
+    try:
+        addresses = {}
+
+        # Find current system addresses.
+        ip = Popen(['/usr/bin/ip', 'addr'], stdout=PIPE, stderr=DEVNULL)
+        ip = ip.communicate()[0].decode('UTF-8')
+
+        iface = ''
+        for line in ip.splitlines():
+            # Track when we enter a new interface.
+            if line[1] == ':':
+                iface = line.split(':')[1].strip()
+                addresses[iface] = {}
+
+            # Find IPv4/IPv6 addresses on the interface.
+            line = line.strip().split(' ')
+            if line[0] in 'inet6':
+                addresses[iface].setdefault(line[0], []).append(line[1])
+
+        # Find other systems on the network the system knows about via ARP.
+        arp = Popen(['/usr/bin/arp', '-n'], stdout=PIPE, stderr=DEVNULL)
+        arp = arp.communicate()[0].decode('UTF-8').splitlines()
+        cat = [item for item in arp[0].split(' ') if item]
+
+        for line in arp[1:]:
+            pieces = [item for item in line.split(' ') if item]
+            pieces = dict(zip(cat, pieces))
+            key = 'Mask' if 'Iface' not in pieces else 'Iface'
+            addresses[pieces[key]].setdefault('ARP', []).append(pieces)
+
+        return addresses
+
+    except Exception as e:
+        print('Networking information error.')
+        return None
+
+
+def disks():
+    try:
+        disks = {}
+
+        # List partition devices.
+        with open('/proc/partitions', 'r') as f:
+            for dk in f.read().splitlines()[1:]:
+                if dk:
+                    dk = dk.rsplit(' ', 2)
+                    disks[dk[-1]] = {
+                    }
+
+        # Mount information for those partitions
+        mount = Popen(['/usr/bin/mount'], stdout=PIPE, stderr=DEVNULL)
+        mount = mount.communicate()[0].decode('UTF-8')
+        mount = mount.splitlines()
+        for mountpoint in mount:
+            mountpoint = mountpoint.split()
+            for device in disks:
+                if device in mountpoint[0]:
+                    disks[device] = {
+                        'mount': mountpoint[-4],
+                        'filesystem': mountpoint[-2],
+                        'flags': mountpoint[-1]
+                    }
+
+        # Usage information for those partitions
+        usage = Popen(['/usr/bin/df', '-h'], stdout=PIPE, stderr=DEVNULL)
+        usage = usage.communicate()[0].decode('UTF-8')
+        for partition in usage.splitlines()[1:]:
+            info = partition.split()
+            for device in disks:
+                if info[0].endswith(device):
+                    disks[device]['usage'] = {
+                        'size': info[1],
+                        'used': info[2],
+                        'avail': info[3],
+                        '%': info[4]
+                    }
+
+
+        return disks
+
+    except Exception as e:
+        print(e)
+        return None
+
+
+def memory():
+    mem = Popen(['/usr/bin/free', '-h'], stdout=PIPE, stderr=DEVNULL)
+    mem = mem.communicate()[0].decode('UTF-8')
+    hdr = mem.splitlines()[0].split()
+    mem = mem.splitlines()[1].split()[1:]
+    return dict(zip(hdr, mem))
+
+
+if __name__ == '__main__':
+    data             = {}
+    data['hostname'] = gethostname()
+    data['network']  = networking()
+    data['disks']    = disks()
+    data['memory']   = memory()
+
+    print(dumps(data, indent=4))

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Script for generating a list of one time passwords in a similar way to S/KEY,
+# just using the hashes as the passwords.
+# ------------------------------------------------------------------------------
+
+if [ $# -lt 2 ]; then
+    echo "Expected two arguments, number of passwords and a key."
+    exit 1
+fi
+
+echo "Generating password chain with $1 entries..."
+echo
+
+# Do the initial hash before looping, to seed the rest of the hashes.
+counter=0
+seedhsh=$(echo -n "$2" | md5sum)
+seedhsh=${seedhsh%% *}
+
+while [ $counter -lt $1 ]; do
+    echo "$seedhsh   $((counter+1))"
+
+    # Next hash in the chain, from the last hash.
+    seedhsh=$(echo -n "$seedhsh" | md5sum)
+    seedhsh=${seedhsh%% *}
+
+    # Count until we've generated enough keys.
+    counter=$((counter+1))
+done
