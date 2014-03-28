@@ -87,4 +87,22 @@ let g:agprg=$HOME . "/.vim/dependencies/bin/ag --column --smart-case"
 " Section: Unite Settings
 " ------------------------------------------------------------------------------
 let g:unite_source_rec_max_cache_files=0
-call unite#custom#source('file_rec/async', 'max_candidates', 0)
+
+
+
+" Section: Late Plugin Settings (Only checkable at late load)
+" ------------------------------------------------------------------------------
+fu! ConditionalPlugins()
+    " Only set custom Unite source settings if the Unite plugin is available.
+    " This stops us calling this on first run (when setting up vim without
+    " plugins) and causing an error.
+    if exists("*unite#custom#source")
+        call unite#custom#source('file_rec/async', 'max_candidates', 0)
+    endif
+endf
+
+augroup PluginModifiers
+    au!
+    au VimEnter * call ConditionalPlugins()
+augroup END
+

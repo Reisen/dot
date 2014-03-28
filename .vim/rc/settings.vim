@@ -26,7 +26,7 @@ set nowrap                      " Disable line wrapping.
 set nolinebreak                 " Don't automatically break lines at the limit.
 set lazyredraw                  " Don't draw while executing macros, faster.
 set list                        " Draw normally hidden characters.
-set listchars=tab:>-,trail:-    " Set hidden character replacements text.
+set listchars=tab:>\ ,trail:_    " Set hidden character replacements text.
 set number                      " Show line numbers.
 if exists('&relativenumber')
     set relativenumber          " Show relative line numbers (Vim 7.4 Dual).
@@ -82,7 +82,7 @@ set ruler                       " Show position in file in status bar.
 set textwidth=0                 " Stop vim from wrapping breaking lines.
 set wrapmargin=0                " Same again.
 set showmatch                   " Highlight matching parenthesis briefly.
-set joinspaces                  " Stop vim using two spaces . line joins.
+set nojoinspaces                " Stop vim using two spaces . line joins.
 
 
 
