@@ -25,7 +25,7 @@ endsnippet
 
 snippet #if "#if then #endif" b
 #if ${1:0}
-${VISUAL}${0:${VISUAL/(.*)/(?1::code)/}}
+	${VISUAL}$0
 #endif
 endsnippet
 
@@ -39,13 +39,13 @@ endsnippet
 
 snippet main "Main Function" b
 int`!p tl(snip)`main()`!p nl(snip)`{
-	return 0;
+	return 0;$0
 }
 endsnippet
 
 snippet for "For Loop"
 for(${2:i} = 0; $2 < ${1:count}; ${3:++$2})`!p nl(snip)`{
-	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+	${VISUAL}$0
 }
 endsnippet
 
@@ -57,19 +57,19 @@ endsnippet
 
 snippet if "If Expression"
 if(${1:true})`!p nl(snip)`{
-	${VISUAL}${0}
+	${VISUAL}$0
 }
 endsnippet
 
 snippet elif "Else If Expression"
 else if(${1:true})`!p nl(snip)`{
-	${VISUAL}${0}
+	${VISUAL}$0
 }
 endsnippet
 
 snippet el "Else Expression"
 else`!p nl(snip)`{
-	${VISUAL}${0}
+	${VISUAL}$0
 }
 endsnippet
 

@@ -22,7 +22,6 @@ Bundle 'gmarik/vundle'
 
 Bundle 'bling/vim-airline'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'justinmk/vim-sneak'
 Bundle 'majutsushi/tagbar'
@@ -51,6 +50,7 @@ Bundle 'wting/rust.vim'
 " ------------------------------------------------------------------------------
 let g:UltiSnipsListSnippets="<C-Tab>"
 let g:UltiSnipsSnippetDirectories=["local_snippets"]
+let g:ultisnips_cpp_type_style = "nl"
 
 
 

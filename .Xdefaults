@@ -4,7 +4,8 @@ URxvt*foreground:       #999999
 URxvt*background:       #171717
 URxvt*borderColor:      #171717
 URxvt*cursorColor:      #C7A551
-URxvt*font:             xft:Sans:pixelsize=11:hinting=true:hintstyle=hintslight:rgba=rgb
+URxvt*font:             xft:Droid Sans Mono:pixelsize=10:hinting=true:hintstyle=hintslight:rgba=rgb
+URxvt*font:             xft:DejaVu Sans Mono:pixelsize=11
 URxvt*font:             xft:Terminus:pixelsize=11
 URxvt*scrollstyle:      plain
 URxvt*scrollBar:        false

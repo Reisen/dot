@@ -36,8 +36,8 @@ enum ${1:Name}`!p nl(snip)`{
 };
 endsnippet
 
-snippet enumclass "Enumeration Class"
-enum class ${1:Name} `!p nl(snip)`{
+snippet "enum cl" "Enumeration Class"
+enum class ${1:Name}`!p nl(snip)`{
 	$0
 };
 endsnippet
@@ -48,8 +48,7 @@ class ${1:Name}`!p nl(snip)`{
 		$1();
 		$1($1 const&);
 		$1($1&&);
-		~$1();
-		$0
+		~$1();$0
 };
 endsnippet
 

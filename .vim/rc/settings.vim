@@ -57,14 +57,18 @@ set splitbelow                  " Same deal for horizontal splits.
 " Section: 10 GUI
 " ------------------------------------------------------------------------------
 if has('gui_running')
-    set guifont=Terminus\ 9     " Fonts for GVim.
+    " Fonts for GVim.
+    set guifont=Droid\ Sans\ Mono\ 8
 
-    set guioptions-=r           " Disable all scrollbars in Gvim.
+    " Disable all scrollbars and toolbars in Gvim.
+    set guioptions-=r
     set guioptions-=R
     set guioptions-=l
     set guioptions-=L
     set guioptions-=b
     set guioptions-=B
+    set guioptions-=m
+    set guioptions-=T
 endif
 
 

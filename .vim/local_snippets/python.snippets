@@ -10,10 +10,6 @@ if __name__ == '__main__':
 	${1:main()}$0
 endsnippet
 
-snippet for "For Loop Ender" i
-${3:$1} for ${1:v} in ${2:iterable}
-endsnippet
-
 snippet for "For Loop" b
 for ${1:item} in ${2:iterable}:
 	${3:pass}
@@ -146,10 +142,10 @@ endsnippet
 ##########################
 snippet try "Try / Except" b
 try:
-	${1:pass}
+	${VISUAL}$0
 
-except ${2:Exception} as ${3:e}:
-	${4:raise $3}
+except ${1:Exception} as ${2:e}:
+	${3:raise $2}
 endsnippet
 
 # vim:ft=snippets:
