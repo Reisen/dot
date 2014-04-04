@@ -18,6 +18,13 @@ fu! StripWhitespace()
     %s/\v\s+$//e
 endf
 
+fu! CreateScratchBuffer()
+    enew
+    setl buftype=nofile
+    setl bufhidden=hide
+    setl noswapfile
+endf
+
 fu! SyncScrollFile()
     " Store the current scrolloff offset temporarily so we can set it to 0 and
     " properly sync up the windows.

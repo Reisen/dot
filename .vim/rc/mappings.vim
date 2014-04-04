@@ -36,6 +36,9 @@ nnoremap <Leader>* <ESC>yiw:Ag <C-R>"<CR>
 " views of files.
 nnoremap <Leader>s :call SyncScrollFile()<CR>
 
+" Open a scratch buffer for notes and things.
+nnoremap <Leader>b :call CreateScratchBuffer()<CR>
+
 
 
 " Section: Autocommands
