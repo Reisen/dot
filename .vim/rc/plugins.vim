@@ -36,6 +36,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
+Bundle 'AshyIsMe/2048'
 
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'elixir-lang/vim-elixir'

@@ -83,7 +83,7 @@ set ruler                       " Show position in file in status bar.
 
 " Section: 13 editing text
 " ------------------------------------------------------------------------------
-set backspace                   " Sane backspace setting.
+set backspace=2                 " Sane backspace setting.
 set textwidth=0                 " Stop vim from wrapping breaking lines.
 set wrapmargin=0                " Same again.
 set showmatch                   " Highlight matching parenthesis briefly.
