@@ -59,8 +59,8 @@ unset colorful
 # Extra PATH directories.
 # ------------------------------------------------------------------------------
 export PATH=$PATH:/home/reisen/.cabal/bin
-export PATH=$PATH:/home/reisen/.local/bin
-export PATH=$PATH:/home/reisen/.local/scripts
+export PATH=$PATH:/home/reisen/.dot/local/bin
+export PATH=$PATH:/home/reisen/.dot/local/scripts
 
 
 

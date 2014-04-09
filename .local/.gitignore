@@ -1,0 +1,9 @@
+# Ignore Everything in this directory.
+*
+
+# Do not ignore .gitignore though, or none of this file will be read.
+!.gitignore
+
+# Unignore the scripts directory as well.
+!scripts/
+!scripts/**
