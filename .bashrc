@@ -15,23 +15,44 @@ alias sandbox='source env/bin/activate'
 
 # Visual Stuff
 # ------------------------------------------------------------------------------
-black=$(tput setaf 0)
-red=$(tput setaf 1)
-green=$(tput setaf 2)
-yellow=$(tput setaf 3)
-blue=$(tput setaf 4)
-magenta=$(tput setaf 5)
-cyan=$(tput setaf 6)
-white=$(tput setaf 7)
-bright=$(tput bold)
-reset_color=$(tput sgr0)
-blink=$(tput blink)
-reverse=$(tput smso)
-underline=$(tput smul)
+colorful() {
+    local black=$(tput setaf 0)
+    local red=$(tput setaf 1)
+    local green=$(tput setaf 2)
+    local yellow=$(tput setaf 3)
+    local blue=$(tput setaf 4)
+    local magenta=$(tput setaf 5)
+    local cyan=$(tput setaf 6)
+    local white=$(tput setaf 7)
+    local bright=$(tput bold)
+    local reset_color=$(tput sgr0)
+    local blink=$(tput blink)
+    local reverse=$(tput smso)
+    local underline=$(tput smul)
 
-export PS1="[\[${blue}\]\W\[${reset_color}\] \u]\[${blue}\]\$\[${reset_color}\] "
+    # Set new colourful prompt text.
+    export PS1="[\[${blue}\]\W\[${reset_color}\] \u]\[${blue}\]\$\[${reset_color}\] "
 
+    # Set colours for man pages (less).
+    export LESS_TERMCAP_mb="${blink}"
+    export LESS_TERMCAP_md="${blue}"
+    export LESS_TERMCAP_me="${reset_color}"
+    export LESS_TERMCAP_se="${reset_color}"
+    export LESS_TERMCAP_so="${bright}${blue}"
+    export LESS_TERMCAP_ue="${reset_color}"
+    export LESS_TERMCAP_us="${bright}${blue}"
 
+    # LESS_TERMCAP_mb=$'\E[5m'
+    # LESS_TERMCAP_md=$'\E[38;5;4m'
+    # LESS_TERMCAP_me=$'\E[m\E(B'
+    # LESS_TERMCAP_se=$'\E[m\E(B'
+    # LESS_TERMCAP_so=$'\E[38;5;9m'
+    # LESS_TERMCAP_ue=$'\E[m\E(B'
+    # LESS_TERMCAP_us=$'\E[38;5;12m'
+}
+
+colorful
+unset colorful
 
 # Extra PATH directories.
 # ------------------------------------------------------------------------------
