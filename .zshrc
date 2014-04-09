@@ -28,6 +28,7 @@ autoload -U promptinit
 promptinit
 
 
+
 # Aliases
 # ------------------------------------------------------------------------------
 alias ls='ls --color=auto --group-directories-first'
@@ -39,7 +40,10 @@ alias sandbox='source env/bin/activate'
 # Visual Stuff
 # ------------------------------------------------------------------------------
 function check_git {
+    # Check if the branch command fails. If so we're not in a git repo.
     git branch &>/dev/null || return
+
+    # Print out the current branch name.
     echo -n "%{$fg[blue]%}B%{${reset_color}%}$(git rev-parse --abbrev-ref HEAD)-"
 }
 
@@ -52,4 +56,4 @@ export RPS1='$(check_git)%{$fg[blue]%}E%{$reset_color%}%?-%{$fg[blue]%}J%{$reset
 # ------------------------------------------------------------------------------
 export PATH=$PATH:/home/reisen/.cabal/bin
 export PATH=$PATH:/home/reisen/.local/bin
-export PATH=$PATH:/home/reisen/bin
+export PATH=$PATH:/home/reisen/.local/scripts

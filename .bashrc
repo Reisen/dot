@@ -54,11 +54,13 @@ colorful() {
 colorful
 unset colorful
 
+
+
 # Extra PATH directories.
 # ------------------------------------------------------------------------------
 export PATH=$PATH:/home/reisen/.cabal/bin
 export PATH=$PATH:/home/reisen/.local/bin
-export PATH=$PATH:/home/reisen/bin
+export PATH=$PATH:/home/reisen/.local/scripts
 
 
 
