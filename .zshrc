@@ -55,5 +55,5 @@ export RPS1='$(check_git)%{$fg[blue]%}E%{$reset_color%}%?-%{$fg[blue]%}J%{$reset
 # Extra PATH directories.
 # ------------------------------------------------------------------------------
 export PATH=$PATH:/home/reisen/.cabal/bin
-export PATH=$PATH:/home/reisen/.dot/local/bin
-export PATH=$PATH:/home/reisen/.dot/local/scripts
+export PATH=$PATH:/home/reisen/.dot/.local/bin
+export PATH=$PATH:/home/reisen/.dot/.local/scripts
