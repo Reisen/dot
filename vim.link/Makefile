@@ -57,7 +57,7 @@ setup-base:
 	@mkdir -p bundle/
 	@mkdir -p backup/{view,swap,undo}
 	@echo "  git clone vundle.git"
-	@git clone https://github.com/gmarik/vundle.git bundle/vundle &>/dev/null
+	@git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim &>/dev/null
 	@echo "  vim +VundleInstall +qall"
 	@${VIMCMD} +VundleInstall +qall
 
