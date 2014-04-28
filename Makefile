@@ -4,7 +4,7 @@ setup-dotiles: link-files
 	@echo "[*] Done"
 
 
-.PHONY: link-files
+.PHONY: link-files setup-vim
 link-files:
 	@echo "[*] Linking Files"
 	@tput setaf 4

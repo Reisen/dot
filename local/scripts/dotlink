@@ -8,9 +8,12 @@ target_file="${1#${PWD}}"
 target_file="${target_file:1: -5}"
 target_file=".${target_file}"
 
+# Backup old dot file if it exists.
 if [[ -f "$HOME/${target_file}" ]]; then
     echo "  mv $HOME/${target_file} $HOME/${target_file}.old"
     mv "$HOME/${target_file}" "$HOME/${target_file}.old"
 fi
+
+# Link to the .link file in $HOME.
 echo "  ln -s ${1} $HOME/${target_file}"
 ln -s "${1}" "$HOME/${target_file}"
