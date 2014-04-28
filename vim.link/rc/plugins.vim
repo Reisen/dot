@@ -10,41 +10,37 @@ if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/bundle/vundle/
     filetype off
-    call vundle#rc()
+    call vundle#begin()
+
+    Bundle 'gmarik/vundle'
+
+    Bundle 'bling/vim-airline'
+    Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
+    Bundle 'godlygeek/tabular'
+    Bundle 'justinmk/vim-sneak'
+    Bundle 'majutsushi/tagbar'
+    Bundle 'mattn/emmet-vim'
+    Bundle 'mhinz/vim-signify'
+    Bundle 'rking/ag.vim'
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'Shougo/unite.vim'
+    Bundle 'Shougo/vimproc.vim'
+    Bundle 'SirVer/ultisnips'
+    Bundle 'sjl/gundo.vim'
+    Bundle 'terryma/vim-multiple-cursors'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-surround'
+    Bundle 'AshyIsMe/2048'
+
+    Bundle 'ehamberg/vim-cute-python'
+    Bundle 'elixir-lang/vim-elixir'
+    Bundle 'groenewege/vim-less'
+    Bundle 'Twinside/vim-haskellConceal'
+    Bundle 'wting/rust.vim'
+    Bundle 'Glench/Vim-Jinja2-Syntax'
+
+    call vundle#end()
 endif
-
-Bundle 'gmarik/vundle'
-
-
-
-" Section: Setup Plugins
-" ------------------------------------------------------------------------------
-
-Bundle 'bling/vim-airline'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-Bundle 'godlygeek/tabular'
-Bundle 'justinmk/vim-sneak'
-Bundle 'majutsushi/tagbar'
-Bundle 'mattn/emmet-vim'
-Bundle 'mhinz/vim-signify'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'sjl/gundo.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'AshyIsMe/2048'
-
-Bundle 'ehamberg/vim-cute-python'
-Bundle 'elixir-lang/vim-elixir'
-Bundle 'groenewege/vim-less'
-Bundle 'Twinside/vim-haskellConceal'
-Bundle 'wting/rust.vim'
-Bundle 'Glench/Vim-Jinja2-Syntax'
-
 
 
 
