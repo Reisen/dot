@@ -76,7 +76,7 @@ setup-post:
 	@echo "  make the_silver_searcher"
 	@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/ &>/dev/null
 	@echo "  make install the_silver_searcher"
-	@make --no-print-directory -C ${HOME}/.dot/local/ag/ install
+	@make --no-print-directory -C ${HOME}/.dot/local/ag/ install &>/dev/null
 
 
 

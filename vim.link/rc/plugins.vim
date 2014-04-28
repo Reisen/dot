@@ -82,7 +82,7 @@ let g:ctrlp_match_window_bottom=0   " Put CtrlP window at the top.
 
 " Section: ag.vim Settings
 " ------------------------------------------------------------------------------
-let g:agprg=$HOME . "/.vim/dependencies/bin/ag --column --noheading --nobreak -S"
+let g:agprg=$HOME . "/.dot/local/bin/ag --column --noheading --nobreak -S"
 
 
 
