@@ -1,6 +1,6 @@
 
 .PHONY: setup-dotfiles
-setup-dotiles: link-files setup-vim
+setup-dotiles: link-files
 	@echo "[*] Done"
 
 
@@ -16,4 +16,7 @@ link-files:
 
 
 .PHONY: setup-vim
+	@echo "[*] Setting up Vim"
+	@tput setaf 4
 	@make -C vim.link/
+	@tput sgr0
