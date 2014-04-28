@@ -16,7 +16,7 @@ bindkey -e                  # Emacs Keybindings
 # Enable Features
 # ------------------------------------------------------------------------------
 zstyle ':completion:*' list-colors ''
-zstyle :compinstall filename '/home/reisen/.zshrc'
+zstyle :compinstall filename "/home/$USER/.zshrc"
 autoload -Uz compinit
 compinit
 
@@ -54,6 +54,6 @@ export RPS1='$(check_git)%{$fg[blue]%}E%{$reset_color%}%?-%{$fg[blue]%}J%{$reset
 
 # Extra PATH directories.
 # ------------------------------------------------------------------------------
-export PATH=$PATH:/home/reisen/.cabal/bin
-export PATH=$PATH:/home/reisen/.dot/local/bin
-export PATH=$PATH:/home/reisen/.dot/local/scripts
+export PATH=$PATH:/home/$USER/.cabal/bin
+export PATH=$PATH:/home/$USER/.dot/local/bin
+export PATH=$PATH:/home/$USER/.dot/local/scripts
