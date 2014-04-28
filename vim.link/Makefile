@@ -3,9 +3,9 @@
 # currently installed Vim.
 # ------------------------------------------------------------------------------
 ifeq (vim,$(findstring vim,${VIMDEPS}))
-VIMCMD=${HOME}/.vim/dependencies/bin/vim
-else ifneq (,$(wildcard ${HOME}/.vim/dependencies/bin/vim))
-VIMCMD=${HOME}/.vim/dependencies/bin/vim
+VIMCMD=${HOME}/.dot/local/bin/vim
+else ifneq (,$(wildcard ${HOME}/.dot/local/bin/vim))
+VIMCMD=${HOME}/.dot/local/bin/vim
 else
 VIMCMD=vim
 endif
@@ -30,9 +30,9 @@ ifeq (vim,$(findstring vim,${VIMDEPS}))
 	@echo "  hg clone vim74"
 	@mkdir -p build/
 	@hg clone https://vim.googlecode.com/hg/ build/vim74 &>/dev/null
-	@echo "  configure --prefix=${HOME}/.dot/local/scripts"
+	@echo "  configure --prefix=${HOME}/.dot/local/"
 	@cd build/vim74/ && ./configure \
-		--prefix=${HOME}/.dot/local/scripts \
+		--prefix=${HOME}/.dot/local \
 		--with-features=huge \
 		--enable-pythoninterp \
 		--enable-luainterp \
@@ -54,11 +54,10 @@ endif
 .NOTPARALLEL: setup-base
 setup-base:
 	@echo "  mkdir -p .vim/..."
-	@mkdir -p vim.link/bundle/
-	@mkdir -p vim.link/backup/{view,swap,undo}
-	@mkdir -p vim.link/dependencies/
+	@mkdir -p bundle/
+	@mkdir -p backup/{view,swap,undo}
 	@echo "  git clone vundle.git"
-	@git clone https://github.com/gmarik/vundle.git vim.link/bundle/vundle
+	@git clone https://github.com/gmarik/vundle.git bundle/vundle
 	@echo "  vim +VundleInstall +qall"
 	@${VIMCMD} +VundleInstall +qall
 
@@ -71,10 +70,10 @@ setup-base:
 .NOTPARALLEL: setup-post
 setup-post:
 	@echo "+ Building Dependencies"
-	@make -C vim.link/bundle/vimproc.vim
-	@git clone https://github.com/ggreer/the_silver_searcher vim.link/local/scripts/ag
-	@./vim.link/local/scripts/ag/build.sh --prefix=${HOME}/.dot/vim.link/local/scripts
-	@make -C vim.link/local/scripts/ag/ install
+	@make -C bundle/vimproc.vim
+	@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.dot/local/ag
+	@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/
+	@make -C ${HOME}/.dot/local/ag/ install
 
 
 
