@@ -57,7 +57,7 @@ setup-base:
 	@mkdir -p bundle/
 	@mkdir -p backup/{view,swap,undo}
 	@echo "  git clone vundle.git"
-	@git clone https://github.com/gmarik/vundle.git bundle/vundle
+	@git clone https://github.com/gmarik/vundle.git bundle/vundle &>/dev/null
 	@echo "  vim +VundleInstall +qall"
 	@${VIMCMD} +VundleInstall +qall
 
@@ -69,10 +69,13 @@ setup-base:
 .PHONY: setup-post
 .NOTPARALLEL: setup-post
 setup-post:
-	@echo "+ Building Dependencies"
-	@make -C bundle/vimproc.vim
-	@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.dot/local/ag
-	@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/
+	@echo "  make -C bundle/vimproc.vim"
+	@make -C bundle/vimproc.vim &>/dev/null
+	@echo "  git clone the_silver_searcher"
+	@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.dot/local/ag &>/dev/null
+	@echo "  make the_silver_searcher"
+	@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/ &>/dev/null
+	@echo "  make install the_silver_searcher"
 	@make -C ${HOME}/.dot/local/ag/ install
 
 
