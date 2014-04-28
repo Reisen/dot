@@ -43,6 +43,7 @@ Bundle 'elixir-lang/vim-elixir'
 Bundle 'groenewege/vim-less'
 Bundle 'Twinside/vim-haskellConceal'
 Bundle 'wting/rust.vim'
+Bundle 'Glench/Vim-Jinja2-Syntax'
 
 
 
