@@ -8,15 +8,20 @@
 " ------------------------------------------------------------------------------
 if has('vim_starting')
     set nocompatible
-    set runtimepath+=~/.vim/bundle/vundle/
+    set runtimepath+=~/.vim/bundle/Vundle.vim
     filetype off
     call vundle#begin()
 
-    Bundle 'gmarik/vundle'
+    Bundle 'gmarik/Vundle.vim'
 
+    Bundle 'AshyIsMe/2048'
     Bundle 'bling/vim-airline'
     Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
+    Bundle 'ehamberg/vim-cute-python'
+    Bundle 'elixir-lang/vim-elixir'
+    Bundle 'Glench/Vim-Jinja2-Syntax'
     Bundle 'godlygeek/tabular'
+    Bundle 'groenewege/vim-less'
     Bundle 'justinmk/vim-sneak'
     Bundle 'majutsushi/tagbar'
     Bundle 'mattn/emmet-vim'
@@ -30,14 +35,8 @@ if has('vim_starting')
     Bundle 'terryma/vim-multiple-cursors'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
-    Bundle 'AshyIsMe/2048'
-
-    Bundle 'ehamberg/vim-cute-python'
-    Bundle 'elixir-lang/vim-elixir'
-    Bundle 'groenewege/vim-less'
     Bundle 'Twinside/vim-haskellConceal'
     Bundle 'wting/rust.vim'
-    Bundle 'Glench/Vim-Jinja2-Syntax'
 
     call vundle#end()
 endif
