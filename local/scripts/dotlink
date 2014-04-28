@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Symlink dotfiles from a dot-repo to a home location.
+# Input:  Absolute Path to File/Directory
+# Output: Symlink in $HOME.
+# ------------------------------------------------------------------------------
+target_file="${1#${PWD}}"
+target_file="${target_file:1: -5}"
+target_file=".${target_file}"
+
+echo "  ln -s ${1} $HOME/${target_file}"

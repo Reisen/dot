@@ -1,7 +1,7 @@
-.PHONY:       nothing setup-vim install-vim setup-base setup-post clean clean-cache
-.NOTPARALLEL: nothing setup-vim install-vim setup-base setup-post clean clean-cache
-
-
+# Check if the new Vim has already been built and installed, if it has then the
+# stage where we setup the Vim addons can use the new vim instead of the
+# currently installed Vim.
+# ------------------------------------------------------------------------------
 ifeq (vim,$(findstring vim,${VIMDEPS}))
 VIMCMD=${HOME}/.vim/dependencies/bin/vim
 else ifneq (,$(wildcard ${HOME}/.vim/dependencies/bin/vim))
@@ -14,38 +14,32 @@ endif
 # This rule chains all the others together, setting up the directory,
 # performing post setup compilation, an anything else.
 # ------------------------------------------------------------------------------
+.PHONY: setup-vim
+.NOTPARALLEL: setup-vim
 setup-vim: install-vim setup-base setup-post
 	@echo "+ Finished Setup"
 
 
 
-# Old Patch-based way of installing vim. Currently using Mercurial instead.
-#
-# @curl -# -o build/vim-7.4.tar.bz2 "ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2"
-# @echo "+ Downloading Patches"
-# @wget -nd -q -r -np ftp://ftp.vim.org/pub/vim/patches/7.4/ -O build/patches
-# @tar -C build/ -jxf build/vim-7.4.tar.bz2
-# @hg clone https://vim.googlecode.com/hg/ build/vim74
-# @echo "+ Applying Patches"
-# @patch -p0 -d build/vim74/ < build/patches &> patchlog
-# @echo "+ Configuring Vim (output in buildlog)"
+# Build and install Vim from the Mercurial repo (already patched up).
 # ------------------------------------------------------------------------------
+.PHONY: install-vim
+.NOTPARALLEL: install-vim
 install-vim:
 ifeq (vim,$(findstring vim,${VIMDEPS}))
-	@mkdir -p ${HOME}/.vim
-	@echo "+ Downloading Vim"
+	@echo "  hg clone vim74"
 	@mkdir -p build/
-	@hg clone https://vim.googlecode.com/hg/ build/vim74
-	@echo "+ Configuring Vim (output in buildlog)"
+	@hg clone https://vim.googlecode.com/hg/ build/vim74 &>/dev/null
+	@echo "  configure --prefix=${HOME}/.dot/local/scripts"
 	@cd build/vim74/ && ./configure \
-		--prefix=${HOME}/.vim/dependencies \
+		--prefix=${HOME}/.dot/local/scripts \
 		--with-features=huge \
 		--enable-pythoninterp \
 		--enable-luainterp \
 		--with-compiledby="Reisen <reisen@morphism.org>" &> buildlog
-	@echo "+ Building Vim (output in buildlog)"
+	@echo "  make -C build/vim74/"
 	@make -C build/vim74/ &>> buildlog
-	@echo "+ Installing Vim locally in ~/.vim/ (output in buildlog)"
+	@echo "  make -C build/vim74/ install"
 	@make -C build/vim74/ install &>> buildlog
 	@rm -r build/
 endif
@@ -56,15 +50,16 @@ endif
 # a backup folder to place all the files vim dumps. Also Vundle needs to be
 # setup in order to get plugins working.
 # ------------------------------------------------------------------------------
+.PHONY: setup-base
+.NOTPARALLEL: setup-base
 setup-base:
-	@echo "+ Setting up Base Directories"
-	@mkdir -p ${HOME}/.vim/bundle/
-	@mkdir -p ${HOME}/.vim/backup/{view,swap,undo}
-	@mkdir -p ${HOME}/.vim/dependencies/
-	@cp -r ./ ${HOME}/.vim/
-	@echo "+ Installing Vundle"
-	@git clone https://github.com/gmarik/vundle.git ${HOME}/.vim/bundle/vundle
-	@echo "+ Running Vim to install Vundle Packages"
+	@echo "  mkdir -p .vim/..."
+	@mkdir -p vim.link/bundle/
+	@mkdir -p vim.link/backup/{view,swap,undo}
+	@mkdir -p vim.link/dependencies/
+	@echo "  git clone vundle.git"
+	@git clone https://github.com/gmarik/vundle.git vim.link/bundle/vundle
+	@echo "  vim +VundleInstall +qall"
 	@${VIMCMD} +VundleInstall +qall
 
 
@@ -72,17 +67,21 @@ setup-base:
 # Base setup is done at this point, so we have to build things that any of the
 # plugins rely on.
 # ------------------------------------------------------------------------------
+.PHONY: setup-post
+.NOTPARALLEL: setup-post
 setup-post:
 	@echo "+ Building Dependencies"
-	@make -C ${HOME}/.vim/bundle/vimproc.vim
-	@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.vim/dependencies/ag
-	@${HOME}/.vim/dependencies/ag/build.sh --prefix=${HOME}/.vim/dependencies
-	@make -C ${HOME}/.vim/dependencies/ag/ install
+	@make -C vim.link/bundle/vimproc.vim
+	@git clone https://github.com/ggreer/the_silver_searcher vim.link/local/scripts/ag
+	@./vim.link/local/scripts/ag/build.sh --prefix=${HOME}/.dot/vim.link/local/scripts
+	@make -C vim.link/local/scripts/ag/ install
 
 
 
 # Reset to default state, to easily zip up and such.
 # ------------------------------------------------------------------------------
+.PHONY: clean
+.NOTPARALLEL: clean
 clean:
 	@echo "+ Cleaning Bundles"
 	@rm -rf ${HOME}/.vim/bundle/
@@ -93,6 +92,8 @@ clean:
 
 
 
+.PHONY: clean-cache
+.NOTPARALLEL: clean-cache
 clean-cache:
 # ------------------------------------------------------------------------------
 	@echo "+ Cleaning Caches"
