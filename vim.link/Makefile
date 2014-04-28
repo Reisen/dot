@@ -38,9 +38,9 @@ ifeq (vim,$(findstring vim,${VIMDEPS}))
 		--enable-luainterp \
 		--with-compiledby="Reisen <reisen@morphism.org>" &> buildlog
 	@echo "  make -C build/vim74/"
-	@make -C build/vim74/ &>> buildlog
+	@make --no-print-directory -C build/vim74/ &>> buildlog
 	@echo "  make -C build/vim74/ install"
-	@make -C build/vim74/ install &>> buildlog
+	@make --no-print-directory -C build/vim74/ install &>> buildlog
 	@rm -r build/
 endif
 
@@ -70,13 +70,13 @@ setup-base:
 .NOTPARALLEL: setup-post
 setup-post:
 	@echo "  make -C bundle/vimproc.vim"
-	@make -C bundle/vimproc.vim &>/dev/null
+	@make --no-print-directory -C bundle/vimproc.vim &>/dev/null
 	@echo "  git clone the_silver_searcher"
 	@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.dot/local/ag &>/dev/null
 	@echo "  make the_silver_searcher"
 	@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/ &>/dev/null
 	@echo "  make install the_silver_searcher"
-	@make -C ${HOME}/.dot/local/ag/ install
+	@make --no-print-directory -C ${HOME}/.dot/local/ag/ install
 
 
 

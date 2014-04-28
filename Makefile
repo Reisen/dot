@@ -19,5 +19,5 @@ link-files:
 setup-vim:
 	@echo "[*] Setting up Vim"
 	@tput setaf 4
-	@make -C vim.link/ VIMDEPS=vim
+	@make --no-print-directory -C vim.link/ VIMDEPS=vim
 	@tput sgr0
