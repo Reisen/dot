@@ -21,6 +21,8 @@ if has('vim_starting')
     Bundle 'elixir-lang/vim-elixir'
     Bundle 'Glench/Vim-Jinja2-Syntax'
     Bundle 'godlygeek/tabular'
+    Bundle 'junegunn/vim-easy-align'
+    Bundle 'tommcdo/vim-exchange'
     Bundle 'groenewege/vim-less'
     Bundle 'justinmk/vim-sneak'
     Bundle 'majutsushi/tagbar'
