@@ -1,7 +1,7 @@
 
 .PHONY: setup-dotfiles
 setup-dotiles: link-files setup-vim
-	@echo "[*] Done"
+	@echo
 
 
 .PHONY: link-files
