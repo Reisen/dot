@@ -21,9 +21,8 @@ if has('vim_starting')
     Bundle 'elixir-lang/vim-elixir'
     Bundle 'Glench/Vim-Jinja2-Syntax'
     Bundle 'godlygeek/tabular'
-    Bundle 'junegunn/vim-easy-align'
-    Bundle 'tommcdo/vim-exchange'
     Bundle 'groenewege/vim-less'
+    Bundle 'junegunn/vim-easy-align'
     Bundle 'justinmk/vim-sneak'
     Bundle 'majutsushi/tagbar'
     Bundle 'mattn/emmet-vim'
@@ -35,10 +34,13 @@ if has('vim_starting')
     Bundle 'SirVer/ultisnips'
     Bundle 'sjl/gundo.vim'
     Bundle 'terryma/vim-multiple-cursors'
+    Bundle 'tommcdo/vim-exchange'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
     Bundle 'Twinside/vim-haskellConceal'
+    Bundle 'Valloric/YouCompleteMe'
     Bundle 'wting/rust.vim'
+    Bundle 'Raimondi/delimitMate'
 
     call vundle#end()
 endif
@@ -87,6 +89,13 @@ let g:agprg=$HOME . "/.dot/local/bin/ag --column --noheading --nobreak -S"
 " Section: Unite Settings
 " ------------------------------------------------------------------------------
 let g:unite_source_rec_max_cache_files=0
+
+
+
+" Section: DelimitMate Setings
+" ------------------------------------------------------------------------------
+let g:delimitMate_expand_cr=1
+let g:delimitMate_expand_space=1
 
 
 

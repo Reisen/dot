@@ -22,7 +22,7 @@ bind C-v split-window -v
 # ------------------------------------------------------------------------------
 # Rename terminal title for easy recognition.
 set -g set-titles on
-set -g set-titles-string '[#(whoami)@#h] - #(curl ipecho.net/plain;echo)'
+set -g set-titles-string '[#(whoami)@#h]'
 
 # Status bar settings.
 set -g status-utf8 on
