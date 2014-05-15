@@ -19,6 +19,7 @@ if has('vim_starting')
     Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
     Bundle 'ehamberg/vim-cute-python'
     Bundle 'elixir-lang/vim-elixir'
+    Bundle 'fatih/vim-go'
     Bundle 'Glench/Vim-Jinja2-Syntax'
     Bundle 'godlygeek/tabular'
     Bundle 'groenewege/vim-less'
@@ -27,6 +28,7 @@ if has('vim_starting')
     Bundle 'majutsushi/tagbar'
     Bundle 'mattn/emmet-vim'
     Bundle 'mhinz/vim-signify'
+    Bundle 'Raimondi/delimitMate'
     Bundle 'rking/ag.vim'
     Bundle 'scrooloose/nerdtree'
     Bundle 'Shougo/unite.vim'
@@ -40,7 +42,6 @@ if has('vim_starting')
     Bundle 'Twinside/vim-haskellConceal'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'wting/rust.vim'
-    Bundle 'Raimondi/delimitMate'
 
     call vundle#end()
 endif
