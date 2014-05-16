@@ -19,7 +19,6 @@ if has('vim_starting')
     Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
     Bundle 'ehamberg/vim-cute-python'
     Bundle 'elixir-lang/vim-elixir'
-    Bundle 'fatih/vim-go'
     Bundle 'Glench/Vim-Jinja2-Syntax'
     Bundle 'godlygeek/tabular'
     Bundle 'groenewege/vim-less'
@@ -51,6 +50,7 @@ endif
 " Section: UltiSnips Settings
 " ------------------------------------------------------------------------------
 let g:UltiSnipsListSnippets="<C-Tab>"
+let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsSnippetDirectories=["local_snippets"]
 let g:ultisnips_cpp_type_style = "nl"
 
