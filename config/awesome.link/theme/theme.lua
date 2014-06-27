@@ -6,8 +6,8 @@ theme = {}
 
 theme.font          = "Terminus 9"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
+theme.bg_normal     = "#111111"
+theme.bg_focus      = "#222233"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -19,8 +19,11 @@ theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = 1
 theme.border_normal = "#000000"
-theme.border_focus  = "#4499FF"
-theme.border_marked = "#91231c"
+theme.border_focus  = "#000000"
+theme.border_marked = "#4499FF"
+
+theme.titlebar_bg_normal = "#111111"
+theme.titlebar_bg_focus =  "#111111"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -40,9 +43,9 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
-theme.menu_height = 15
-theme.menu_width  = 100
+--theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
+theme.menu_height = 18
+theme.menu_width  = 120
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -73,7 +76,7 @@ theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/def
 theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = os.getenv("HOME") .. "/desktop.png"
+theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/theme/desktop.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"

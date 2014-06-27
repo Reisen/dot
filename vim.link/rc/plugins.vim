@@ -17,7 +17,6 @@ if has('vim_starting')
     Bundle 'AshyIsMe/2048'
     Bundle 'bling/vim-airline'
     Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-    Bundle 'ehamberg/vim-cute-python'
     Bundle 'elixir-lang/vim-elixir'
     Bundle 'Glench/Vim-Jinja2-Syntax'
     Bundle 'godlygeek/tabular'
@@ -38,7 +37,6 @@ if has('vim_starting')
     Bundle 'tommcdo/vim-exchange'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
-    Bundle 'Twinside/vim-haskellConceal'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'wting/rust.vim'
 
