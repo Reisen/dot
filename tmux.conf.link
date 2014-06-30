@@ -2,6 +2,7 @@
 # ------------------------------------------------------------------------------
 # Change the prefix, CTRL_B interferes with vim which sucks.
 set -g prefix C-a
+set -g default-shell /usr/bin/bash
 unbind C-b
 bind C-a send-prefix
 
