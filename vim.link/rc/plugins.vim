@@ -26,7 +26,6 @@ if has('vim_starting')
     Bundle 'majutsushi/tagbar'
     Bundle 'mattn/emmet-vim'
     Bundle 'mhinz/vim-signify'
-    Bundle 'Raimondi/delimitMate'
     Bundle 'rking/ag.vim'
     Bundle 'scrooloose/nerdtree'
     Bundle 'Shougo/unite.vim'
