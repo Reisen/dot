@@ -1,21 +1,26 @@
 # Key Bindings (All custom binds begin with C-)
 # ------------------------------------------------------------------------------
-# Change the prefix, CTRL_B interferes with vim which sucks.
+# Change the prefix, CTRL-B interferes with vim which sucks.
 set -g prefix C-a
 set -g default-shell /usr/bin/bash
 unbind C-b
 bind C-a send-prefix
 
-# Reload tmux configuration with CTRL_B-R.
+# Reload tmux configuration with CTRL-R.
 bind C-r source-file ~/.tmux.conf
 
-# Bind window splitting and navigation binds.
-bind C-h select-pane -L
-bind C-j select-pane -D
-bind C-k select-pane -U
-bind C-l select-pane -R
-bind C-s split-window -h
-bind C-v split-window -v
+# Bind window splitting and navigation binds. Do it Vim-Like.
+bind -n M-h select-pane -L
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+bind -n M-l select-pane -R
+
+# Map Window splitting keps to Vim like binds.
+bind -r C-s split-window -h
+bind -r C-v split-window -v
+
+# Map Window Toggling.
+bind -n M-6 last-window
 
 
 
@@ -32,6 +37,7 @@ set -g status-fg white
 set -g status-interval 10
 set -g status-right '#[fg=blue,bold]#(uptime | cut -d "," -f 3-)'
 set-window-option -g window-status-current-fg blue
+set-window-option -g mode-keys vi
 
 # Window Borders
 set -g pane-border-fg white
