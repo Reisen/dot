@@ -94,33 +94,63 @@
 (defun dumb-mode-indent ()
   (indent-line-to
     (save-excursion
+      ; Check the previous line to decide how to indent.
       (previous-line)
       (end-of-line)
-      (backward-char)
-      (cond
-        ((or
-          (looking-at "{")
-          (looking-at "(")
-          (looking-at "\\["))
-            (beginning-of-line-text)
-            (+ (current-column) 4))
 
-        ((looking-at "}")
-          (beginning-of-line-text)
-          (indent-line-to (- (current-column) 4))
-          (current-column))
+      ; If the previous line isn't empty, we're good to go. This check makes
+      ; sure that pressing left doesn't move back an extra line and do weird
+      ; indentation.
+      (if (not (= (current-column) 0))
+        (progn
 
-        (t
-          (beginning-of-line-text)
+          ; Move back so we can inspect what character we are looking at.
+          (backward-char)
           (cond
+
+            ; Check for characters that mean we indent a new level.
             ((or
-              (looking-at ");")
-              (looking-at "];"))
+              (looking-at "{")
+              (looking-at "(")
+              (looking-at "\\["))
                 (beginning-of-line-text)
-                (indent-line-to (- (current-column) 4))
-                (current-column))
+                (+ (current-column) 4))
+
+            ; Unindent for functions.
+            ((looking-at "}")
+              (beginning-of-line-text)
+              (indent-line-to (- (current-column) 4))
+              (current-column))
+
+            ; Unindent for arrays and tuples.
             (t
-              (current-column))))))))
+              (beginning-of-line-text)
+              (cond
+                ((or
+                  (looking-at ");")
+                  (looking-at "];"))
+                    (beginning-of-line-text)
+                    (indent-line-to (- (current-column) 4))
+                    (current-column))
+                (t
+                  (current-column))))))
+
+        ; But if the line IS empty, we still need to maintain indent level,
+        ; so we keep scanning back until we find a non-empty line and copy
+        ; that lines indent level.
+        (progn
+          (while
+            (=
+              (length (buffer-substring-no-properties
+                (line-beginning-position)
+                (line-end-position)))
+              0)
+            (previous-line))
+          (beginning-of-line-text)
+          (current-column))))))
+            
+              
+
   
 ; Create a new mode map for rust, because rust-mode sucks and doesn't
 ; even define a mode-map to work with.
