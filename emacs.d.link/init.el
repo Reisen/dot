@@ -88,7 +88,53 @@
 
 ; Language Specific Settings & Hooks
 ; ------------------------------------------------------------------------------
+; This function implements a very dumb indent mode for C-like languages, I know
+; it goes against the 'emacs way' but I edit a lot of rust, and the rust-mode
+; extension is really broken. This works fine.
+(defun dumb-mode-indent ()
+  (indent-line-to
+    (save-excursion
+      (previous-line)
+      (end-of-line)
+      (backward-char)
+      (cond
+        ((or
+          (looking-at "{")
+          (looking-at "(")
+          (looking-at "\\["))
+            (beginning-of-line-text)
+            (+ (current-column) 4))
+
+        ((looking-at "}")
+          (beginning-of-line-text)
+          (indent-line-to (- (current-column) 4))
+          (current-column))
+
+        (t
+          (beginning-of-line-text)
+          (cond
+            ((or
+              (looking-at ");")
+              (looking-at "];"))
+                (beginning-of-line-text)
+                (indent-line-to (- (current-column) 4))
+                (current-column))
+            (t
+              (current-column))))))))
+  
+; Create a new mode map for rust, because rust-mode sucks and doesn't
+; even define a mode-map to work with.
+(when (not rust-mode-map)
+    (defvar rust-mode-map (make-sparse-keymap)))
+
+; Hook the loading of rust-mode in a buffer so we can override It's
+; absolutely retarded settings with our own map and values.
 (progn
+  (add-hook 'rust-mode-hook (lambda ()
+    (setq tab-width 4)
+    (use-local-map rust-mode-map)
+    (define-key rust-mode-map "\C-i" 'self-insert-command)
+    (setq indent-line-function 'dumb-mode-indent)))
 )
 
 
