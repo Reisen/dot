@@ -124,8 +124,7 @@
   
 ; Create a new mode map for rust, because rust-mode sucks and doesn't
 ; even define a mode-map to work with.
-(when (not rust-mode-map)
-    (defvar rust-mode-map (make-sparse-keymap)))
+(defvar rust-mode-map (make-sparse-keymap))
 
 ; Hook the loading of rust-mode in a buffer so we can override It's
 ; absolutely retarded settings with our own map and values.
