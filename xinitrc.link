@@ -1,2 +1,5 @@
 setxkbmap -layout gb -option caps:swapescape
-exec awesome
+feh --bg-fill ~/.config/awesome/theme/desktop.png
+sxhkd &
+tint2 &
+exec bspwm
