@@ -1,35 +1,3 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
- '(custom-safe-themes (quote ("d6f302ffaf35a05fb64bd31da0cb91dfe625beaa5981bfc76f7cb69b87d15507" "5ab8f213f420aad076b4ebb70461814d5d4e6f2fbcca4768cfc05e5cc97940db" "524239dc59fd3b5923db2be6294943c930bbae053fc24f28e09319ad9ce8cfb8" "478f053960addd1bfc2697af4f6c05b79e6a4d17d4d2c25eab83a8b4b52a7d71" "925a7ec6725e7b5872b0c0b6dcd6bf97ea1b842f821a79d25835f5c9a3babee5" "761d44dc06b3c8fff771435fd771b170d1bbdd71348b6aaaa6c0d0270d56cb70" "a02a91280d196aac69d07102845f2d92271e890bfdd116690f199f24a7e02cec" "134f38000f413a88743764983c751ac34edbec75a602065e2ae3b87fcf26c451" "82db24153a4b92df8d7d75abc3bd69d72915d3cfb3d4311fb4c4f87f439f066b" "51ddcedbb049d8d3e3ff83bd3bf786ddf8d1572c4ba2b5c2b0e8ebdb82417c62" "668fb336b7ebbbb2ac2d5cc8d873b8988865fb8846415458b30c4171a3f73b98" "24a0de2422359c267b3e8cf923470181bbb1ac093a6e1e5986627133dae7e288" "e663aed6d8f5f81e087f22b0bb2e7cba9b86ea0a42ae1b50de2b73f4fb95b240" "86f4baa7d20edf1c232a1ecd44983146f20d0d7b501e0794942f9445a2900794" "6db14027489b24c31efa1aba587f07d7534fe7a1c3df3d8a5b85159fbc18e635" "cd36d4636e24fbc14960a340a094d5ca71536083a4125658d134501d754bbec1" "533976fbc9e95aadb82a4254e5ff187aadfe1cf426313419d0bb704ec12d05b9" "7bf64a1839bf4dbc61395bd034c21204f652185d17084761a648251041b70233" "be8e1a940b5a142d486fe4dd17ac74270dfef17b57421c48835f2f746ecc639a" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
- '(fringe-mode 6 nil (fringe))
- '(main-line-color1 "#191919")
- '(main-line-color2 "#111111")
- '(powerline-color1 "#191919")
- '(powerline-color2 "#111111"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-preview-common ((t (:inherit default :background "#111111" :foreground "#336699"))) t)
- '(company-scrollbar-bg ((t (:background "#000000"))) t)
- '(company-scrollbar-fg ((t (:background "#0c0c0c"))) t)
- '(company-tooltip ((t (:inherit default :background "#000000"))) t)
- '(company-tooltip-common ((t (:inherit default :foreground "#336699" :background "#000000"))) t)
- '(company-tooltip-common-selection ((t (:inherit default :background "#111111" :foreground "#336699"))) t)
- '(company-tooltip-selection ((t (:inherit default :background "#111111"))) t)
- '(fringe ((t (:inherit default :background "#191919"))))
- '(linum ((t (:inherit default :background "#191919"))))
- '(mode-line ((t (:inherit default :background "#111111"))))
- '(mode-line-inactive ((t (:inherit default :foreground "#555555" :background "#111111"))))
- '(vertical-border ((t (:inherit default :background "#111111" :foreground "#111111")))))
-
-
-
 ; Initialize the package manager interface.
 ; ------------------------------------------------------------------------------
 (progn
@@ -58,7 +26,8 @@
     company
     move-text
     helm
-    neotree))
+    neotree
+    git-gutter))
 
   (unless package-archive-contents
     (package-refresh-contents))
@@ -67,7 +36,7 @@
   (dolist (package my-packages)
     (unless (package-installed-p package)
       (package-install package))))
-  
+
 
 
 
@@ -135,7 +104,7 @@
     yas-minor-mode-map
     (kbd "C-j")
     'yas-expand)
-  
+
   ; Configure Company Mode Completion Colours
   (let ((bg (face-attribute 'default :background)))
     (custom-set-faces
@@ -143,13 +112,13 @@
        :inherit default
        :background "#111111"))))
 
-     `(linum ((t (
-       :inherit default
-       :background "#191919"))))
+     ;`(linum ((t (
+     ;  :inherit default
+     ;  :background "#191919"))))
 
-     `(fringe ((t (
-       :inherit default
-       :background "#191919"))))
+     ;`(fringe ((t (
+     ;  :inherit default
+     ;  :background "#191919"))))
 
      `(vertical-border ((t (
        :inherit default
@@ -263,7 +232,7 @@
             (previous-line))
           (back-to-indentation)
           (current-column))))))
-  
+
 ; Create a new mode map for rust, because rust-mode sucks and doesn't
 ; even define a mode-map to work with.
 (unless (boundp 'rust-mode-map)
@@ -296,3 +265,26 @@
     (kbd "<RET>")
     'evil-ret-and-indent)
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#080808" "#953331" "#546a29" "#909737" "#385e6b" "#7f355e" "#34676f" "#c6a57b"])
+ '(custom-safe-themes (quote ("6edc1aed8d373bd95d3771fa0331263e24cafd907e169ff0fbeb4b1f3eb2bf6d" "fc1ac6fa119b8eb9a893431ddd60ee8cdc0f39ff0c338ebf44e653e80bc61770" "e79733c55be4e163078b39550d2b17fd1fe37de4f931e2ebe407cda6a4fd05d2" "7748d2dae8e08d83780e2015e103944d24d5405b8784419f08cd6cd05f43c04f" "b3ab37a5c6c96d3b7db33f16cf3deeb1766afa8d62eca73de3ea60413a5ffad1" "c1a38c723be80ba66c4be9fe791977d0862f7740e88dc6f883e655db2dba409b" default)))
+ '(fci-rule-color "#080808"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-preview-common ((t (:inherit default :background "#111111" :foreground "#336699"))) t)
+ '(company-scrollbar-bg ((t (:background "#000000"))) t)
+ '(company-scrollbar-fg ((t (:background "#141414"))) t)
+ '(company-tooltip ((t (:inherit default :background "#000000"))) t)
+ '(company-tooltip-common ((t (:inherit default :foreground "#336699" :background "#000000"))) t)
+ '(company-tooltip-common-selection ((t (:inherit default :background "#111111" :foreground "#336699"))) t)
+ '(company-tooltip-selection ((t (:inherit default :background "#111111"))) t)
+ '(mode-line ((t (:inherit default :background "#111111"))))
+ '(mode-line-inactive ((t (:inherit default :foreground "#555555" :background "#111111"))))
+ '(vertical-border ((t (:inherit default :background "#111111" :foreground "#111111")))))

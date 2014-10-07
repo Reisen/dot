@@ -55,12 +55,19 @@
       (jazz-fg       "#c6a57b")
       (jazz-fg-1     "#c6a57b")
 
-      (jazz-bg-1     "#101010")
-      (jazz-bg-05    "#151515")
-      (jazz-bg       "#151515")
-      (jazz-bg+1     "#202020")
-      (jazz-bg+2     "#505050")
-      (jazz-bg+3     "#606060")
+      ;(jazz-bg-1     "#101010")
+      ;(jazz-bg-05    "#151515")
+      ;(jazz-bg       "#151515")
+      ;(jazz-bg+1     "#202020")
+      ;(jazz-bg+2     "#505050")
+      ;(jazz-bg+3     "#606060")
+
+      (jazz-bg-1     "#030303")
+      (jazz-bg-05    "#080808")
+      (jazz-bg       "#080808")
+      (jazz-bg+1     "#111111")
+      (jazz-bg+2     "#303030")
+      (jazz-bg+3     "#404040")
 
       (jazz-red+1    "#8d4a4a")
       (jazz-red      "#953331")
@@ -140,13 +147,13 @@
    `(mode-line
      ((,class (:foreground ,jazz-fg
                            :background ,jazz-bg-1
-                           :box (:line-width 3 :color ,jazz-bg-1)))))
+                           :box (:line-width 3 :color ,jazz-bg+1)))))
    `(mode-line-buffer-id ((,class (:foreground ,jazz-yellow :weight bold))))
    `(mode-line-highlight ((,class (:inverse-video t))))
    `(mode-line-inactive
      ((,class (:inherit mode-line :foreground ,jazz-green-1
                         :background ,jazz-bg-1
-                        :box (:line-width 3 :color ,jazz-bg-1)))))
+                        :box (:line-width 3 :color ,jazz-bg+1)))))
    `(mode-line-folder-face ((,class (:foreground ,jazz-bg+2))))
    `(mode-line-modified-face ((,class (:foreground ,jazz-red))))
    `(mode-line-ro-modified-face ((,class (:foreground ,jazz-blue))))
@@ -397,7 +404,7 @@
    `(jabber-title-large ((,class (:height 1.3 :weight bold))))
 
    ;; linum-mode
-   `(linum ((,class (:foreground ,jazz-bg+2 :background ,jazz-bg-1))))
+   `(linum ((,class (:foreground ,jazz-bg+2 :background ,jazz-bg))))
 
    ;; magit
    `(magit-section-title ((,class (:foreground ,jazz-yellow :weight bold :box nil :background ,jazz-bg))))
@@ -622,11 +629,11 @@
    ;; ensime
    `(ensime-errline-highlight ((,class (:background ,jazz-red :foreground ,jazz-fg))))
    `(ensime-warnline ((,class (:background ,jazz-bg+1))))
-   
+
    ;; coffee-mode
    `(coffee-mode-function-param ((,class (:foreground ,jazz-blue+1))))
    `(coffee-mode-class-name ((,class (:foreground ,jazz-blue))))
-   
+
    ;; which-func-mode
    `(which-func ((,class (:foreground ,jazz-green+4)))))
 
