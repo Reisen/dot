@@ -238,9 +238,10 @@
 (unless (boundp 'rust-mode-map)
   (defvar rust-mode-map (make-sparse-keymap)))
 
-; Hook the loading of rust-mode in a buffer so we can override It's
-; absolutely retarded settings with our own map and values.
+; Language Mode hooks for language specific settings.
 (progn
+  ; Hook the loading of rust-mode in a buffer so we can override It's
+  ; absolutely retarded settings with our own map and values.
   (add-hook 'rust-mode-hook (lambda ()
     (setq tab-width 4)
     (setq indent-line-function 'dumb-mode-indent)))
@@ -249,6 +250,12 @@
       rust-mode-map
       "\C-i"
       'self-insert-command)
+      
+  ; Hook the C++ mode so we can configure that to be a little less
+  ; horrible as well.
+  (add-hook 'c-mode-common-hook (lambda ()
+    (c-set-offset 'case-label 4)
+    (c-set-offset 'substatement-open 0)))
 )
 
 
