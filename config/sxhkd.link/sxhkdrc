@@ -84,7 +84,7 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run
+	gmrun
 
 # make sxhkd reload its configuration files:
 super + Escape
