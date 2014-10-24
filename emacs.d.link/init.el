@@ -27,7 +27,8 @@
     move-text
     helm
     neotree
-    git-gutter))
+    git-gutter
+    lua-mode))
 
   (unless package-archive-contents
     (package-refresh-contents))
@@ -272,26 +273,3 @@
     (kbd "<RET>")
     'evil-ret-and-indent)
 )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#080808" "#953331" "#546a29" "#909737" "#385e6b" "#7f355e" "#34676f" "#c6a57b"])
- '(custom-safe-themes (quote ("6edc1aed8d373bd95d3771fa0331263e24cafd907e169ff0fbeb4b1f3eb2bf6d" "fc1ac6fa119b8eb9a893431ddd60ee8cdc0f39ff0c338ebf44e653e80bc61770" "e79733c55be4e163078b39550d2b17fd1fe37de4f931e2ebe407cda6a4fd05d2" "7748d2dae8e08d83780e2015e103944d24d5405b8784419f08cd6cd05f43c04f" "b3ab37a5c6c96d3b7db33f16cf3deeb1766afa8d62eca73de3ea60413a5ffad1" "c1a38c723be80ba66c4be9fe791977d0862f7740e88dc6f883e655db2dba409b" default)))
- '(fci-rule-color "#080808"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-preview-common ((t (:inherit default :background "#111111" :foreground "#336699"))) t)
- '(company-scrollbar-bg ((t (:background "#000000"))) t)
- '(company-scrollbar-fg ((t (:background "#141414"))) t)
- '(company-tooltip ((t (:inherit default :background "#000000"))) t)
- '(company-tooltip-common ((t (:inherit default :foreground "#336699" :background "#000000"))) t)
- '(company-tooltip-common-selection ((t (:inherit default :background "#111111" :foreground "#336699"))) t)
- '(company-tooltip-selection ((t (:inherit default :background "#111111"))) t)
- '(mode-line ((t (:inherit default :background "#111111"))))
- '(mode-line-inactive ((t (:inherit default :foreground "#555555" :background "#111111"))))
- '(vertical-border ((t (:inherit default :background "#111111" :foreground "#111111")))))
