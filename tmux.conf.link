@@ -42,3 +42,10 @@ set-window-option -g mode-keys vi
 # Window Borders
 set -g pane-border-fg white
 set -g pane-active-border-fg blue
+
+
+
+# Miscillaneous Settings
+# ------------------------------------------------------------------------------
+# Get rid of the escape delay, which screws with vim modes insanely badly
+set -s escape-time 0
