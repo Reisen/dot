@@ -54,7 +54,7 @@
   (set-default-font "Terminus 8")
   (require 'color-theme-sanityinc-tomorrow)
   (if (display-graphic-p)
-    (load-theme 'jazz)
+    (load-theme 'jazz t)
     (color-theme-sanityinc-tomorrow-night))
 
 
@@ -251,7 +251,7 @@
       rust-mode-map
       "\C-i"
       'self-insert-command)
-      
+
   ; Hook the C++ mode so we can configure that to be a little less
   ; horrible as well.
   (add-hook 'c-mode-common-hook (lambda ()
@@ -273,3 +273,26 @@
     (kbd "<RET>")
     'evil-ret-and-indent)
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("6edc1aed8d373bd95d3771fa0331263e24cafd907e169ff0fbeb4b1f3eb2bf6d" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-preview-common ((t (:inherit default :background "#111111" :foreground "#336699"))))
+ '(company-scrollbar-bg ((t (:background "#000000"))))
+ '(company-scrollbar-fg ((t (:background "#141414"))))
+ '(company-tooltip ((t (:inherit default :background "#000000"))))
+ '(company-tooltip-common ((t (:inherit default :foreground "#336699" :background "#000000"))))
+ '(company-tooltip-common-selection ((t (:inherit default :background "#111111" :foreground "#336699"))))
+ '(company-tooltip-selection ((t (:inherit default :background "#111111"))))
+ '(mode-line ((t (:inherit default :background "#111111"))))
+ '(mode-line-inactive ((t (:inherit default :foreground "#555555" :background "#111111"))))
+ '(vertical-border ((t (:inherit default :background "#111111" :foreground "#111111")))))
