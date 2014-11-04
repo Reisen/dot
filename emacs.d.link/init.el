@@ -28,7 +28,9 @@
     helm
     neotree
     git-gutter
-    lua-mode))
+    lua-mode
+    haskell-mode
+    flycheck))
 
   (unless package-archive-contents
     (package-refresh-contents))
@@ -166,74 +168,15 @@
 ; Miscillaneous Settings
 ; ------------------------------------------------------------------------------
 (progn
+  ; Tabbing Settings for All Languages
   (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
 )
 
 
 
 ; Language Specific Settings & Hooks
 ; ------------------------------------------------------------------------------
-; This function implements a very dumb indent mode for C-like languages, I know
-; it goes against the 'emacs way' but I edit a lot of rust, and the rust-mode
-; extension is really broken. This works fine.
-(defun dumb-mode-indent ()
-  (indent-line-to
-    (save-excursion
-      ; Check the previous line to decide how to indent.
-      (previous-line)
-      (end-of-line)
-
-      ; If the previous line isn't empty, we're good to go. This check makes
-      ; sure that pressing left doesn't move back an extra line and do weird
-      ; indentation.
-      (if (not (= (current-column) 0))
-        (progn
-
-          ; Move back so we can inspect what character we are looking at.
-          (backward-char)
-          (cond
-
-            ; Check for characters that mean we indent a new level.
-            ((or
-              (looking-at "{")
-              (looking-at "(")
-              (looking-at "\\["))
-                (back-to-indentation)
-                (+ (current-column) 4))
-
-            ; Unindent for functions.
-            ((looking-at "}")
-              (back-to-indentation)
-              (indent-line-to (- (current-column) 4))
-              (current-column))
-
-            ; Unindent for arrays and tuples.
-            (t
-              (beginning-of-line-text)
-              (cond
-                ((or
-                  (looking-at ");")
-                  (looking-at "];"))
-                    (back-to-indentation)
-                    (indent-line-to (- (current-column) 4))
-                    (current-column))
-                (t
-                  (current-column))))))
-
-        ; But if the line IS empty, we still need to maintain indent level,
-        ; so we keep scanning back until we find a non-empty line and copy
-        ; that lines indent level.
-        (progn
-          (while
-            (=
-              (length (buffer-substring-no-properties
-                (line-beginning-position)
-                (line-end-position)))
-              0)
-            (previous-line))
-          (back-to-indentation)
-          (current-column))))))
-
 ; Create a new mode map for rust, because rust-mode sucks and doesn't
 ; even define a mode-map to work with.
 (unless (boundp 'rust-mode-map)
@@ -241,21 +184,33 @@
 
 ; Language Mode hooks for language specific settings.
 (progn
-  ; Hook the loading of rust-mode in a buffer so we can override It's
-  ; absolutely retarded settings with our own map and values.
+  ; Rust Mode
   (add-hook 'rust-mode-hook (lambda ()
-    (setq tab-width 4)
-    (setq indent-line-function 'dumb-mode-indent)))
     (use-local-map rust-mode-map)
     (define-key
       rust-mode-map
       "\C-i"
-      'self-insert-command)
+      'self-insert-command)))
 
-  ; Hook the C++ mode so we can configure that to be a little less
-  ; horrible as well.
+  ; C/C++ Mode
+
+
+  (defun my-c-lineup-inclass (langelem)
+    (let ((inclass (assoc 'inclass c-syntactic-context)))
+      (save-excursion
+        (goto-char (c-langelem-pos inclass))
+        (if
+          (or
+            (looking-at "struct")
+            (looking-at "typedef struct"))
+          '+
+          '++))))
+
   (add-hook 'c-mode-common-hook (lambda ()
+    (c-set-style "stroustrap")
     (c-set-offset 'case-label 4)
+    (c-set-offset 'access-label '-)
+    (c-set-offset 'inclass 'my-c-lineup-inclass)
     (c-set-offset 'substatement-open 0)))
 )
 
@@ -280,7 +235,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("6edc1aed8d373bd95d3771fa0331263e24cafd907e169ff0fbeb4b1f3eb2bf6d" default))))
+    ("6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "6edc1aed8d373bd95d3771fa0331263e24cafd907e169ff0fbeb4b1f3eb2bf6d" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
