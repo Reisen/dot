@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function process {
+    while read -r line || [[ -n $line ]]; do
+        if [[ $line == \#include* ]]; then
+            target="${line:10: -1}"
+            process "$target"
+        else
+            echo "$line"
+        fi
+    done < $1
+}
+
+process "$1"
