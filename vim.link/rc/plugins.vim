@@ -7,41 +7,30 @@
 " Section: Setup Vundle
 " ------------------------------------------------------------------------------
 if has('vim_starting')
-    set nocompatible
-    set runtimepath+=~/.vim/bundle/Vundle.vim
-    filetype off
-    call vundle#begin()
-
-    Bundle 'gmarik/Vundle.vim'
-
-    Bundle 'AshyIsMe/2048'
-    Bundle 'bling/vim-airline'
-    Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-    Bundle 'elixir-lang/vim-elixir'
-    Bundle 'Glench/Vim-Jinja2-Syntax'
-    Bundle 'godlygeek/tabular'
-    Bundle 'groenewege/vim-less'
-    Bundle 'junegunn/vim-easy-align'
-    Bundle 'justinmk/vim-sneak'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'mattn/emmet-vim'
-    Bundle 'mhinz/vim-signify'
-    Bundle 'rking/ag.vim'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'Shougo/unite.vim'
-    Bundle 'Shougo/vimproc.vim'
-    Bundle 'SirVer/ultisnips'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'terryma/vim-multiple-cursors'
-    Bundle 'tommcdo/vim-exchange'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-surround'
-    Bundle 'Valloric/YouCompleteMe'
-    Bundle 'wting/rust.vim'
-    Bundle 'raichoo/haskell-vim'
-    Bundle 'jonathanfilip/vim-lucius'
-
-    call vundle#end()
+     call plug#begin('~/.vim/plugged')
+     Plug 'bling/vim-airline'
+     Plug 'elixir-lang/vim-elixir'
+     Plug 'Glench/Vim-Jinja2-Syntax'
+     Plug 'godlygeek/tabular'
+     Plug 'groenewege/vim-less'
+     Plug 'junegunn/vim-easy-align'
+     Plug 'justinmk/vim-sneak'
+     Plug 'majutsushi/tagbar'
+     Plug 'mattn/emmet-vim'
+     Plug 'mhinz/vim-signify'
+     Plug 'rking/ag.vim'
+     Plug 'scrooloose/nerdtree'
+     Plug 'Shougo/unite.vim'
+     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+     Plug 'SirVer/ultisnips'
+     Plug 'sjl/gundo.vim'
+     Plug 'tommcdo/vim-exchange'
+     Plug 'tpope/vim-fugitive'
+     Plug 'tpope/vim-surround'
+     Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+     Plug 'wting/rust.vim'
+     Plug 'raichoo/haskell-vim'
+     call plug#end()
 endif
 
 

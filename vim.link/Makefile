@@ -27,21 +27,20 @@ setup-vim: install-vim setup-base setup-post
 .NOTPARALLEL: install-vim
 install-vim:
 ifeq (vim,$(findstring vim,${VIMDEPS}))
-	@echo "  hg clone vim74"
+	@echo "  git clone vim"
 	@mkdir -p build/
-	@hg clone https://vim.googlecode.com/hg/ build/vim74 &>/dev/null
+	@git clone "https://github.com/vim/vim.git" build/vim74 > /dev/null 2>&1
 	@echo "  configure --prefix=${HOME}/.dot/local/"
 	@cd build/vim74/ && ./configure \
 		--prefix=${HOME}/.dot/local \
 		--with-features=huge \
 		--enable-pythoninterp \
 		--enable-luainterp \
-		--with-compiledby="Reisen <reisen@morphism.org>" &> buildlog
+		--with-compiledby="Reisen <reisen@morphism.org>" > buildlog 2>&1
 	@echo "  make -C build/vim74/"
-	@make --no-print-directory -C build/vim74/ &>> buildlog
+	@make --no-print-directory -C build/vim74/ >> buildlog 2>&1
 	@echo "  make -C build/vim74/ install"
-	@make --no-print-directory -C build/vim74/ install &>> buildlog
-	@rm -r build/
+	@make --no-print-directory -C build/vim74/ install >> buildlog 2>&1
 endif
 
 
@@ -54,12 +53,12 @@ endif
 .NOTPARALLEL: setup-base
 setup-base:
 	@echo "  mkdir -p .vim/..."
-	@mkdir -p bundle/
+	@mkdir -p autoload/
 	@mkdir -p backup/{view,swap,undo}
-	@echo "  git clone vundle.git"
-	@git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim &>/dev/null
-	@echo "  vim +VundleInstall +qall"
-	@${VIMCMD} +VundleInstall +qall
+	@echo "  wget plug.vim"
+	@wget --quiet "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" -O autoload/plug.vim
+	@echo "  vim +PlugInstall +qall"
+	@${VIMCMD} +PlugInstall +qall
 
 
 
@@ -69,16 +68,16 @@ setup-base:
 .PHONY: setup-post
 .NOTPARALLEL: setup-post
 setup-post:
-	@echo "  make -C bundle/vimproc.vim"
-	@make --no-print-directory -C bundle/vimproc.vim &>/dev/null
-	@echo "  git clone the_silver_searcher"
-	@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.dot/local/ag &>/dev/null
-	@echo "  make the_silver_searcher"
-	@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/ &>/dev/null
-	@echo "  make install the_silver_searcher"
-	@make --no-print-directory -C ${HOME}/.dot/local/ag/ install &>/dev/null
-	@echo "  YouCompleteMe/install.sh"
-	@cd bundle/YouCompleteMe && ./install.sh &>/dev/null
+	#@echo "  make -C bundle/vimproc.vim"
+	#@make --no-print-directory -C bundle/vimproc.vim &>/dev/null
+	#@echo "  git clone the_silver_searcher"
+	#@git clone https://github.com/ggreer/the_silver_searcher ${HOME}/.dot/local/ag &>/dev/null
+	#@echo "  make the_silver_searcher"
+	#@${HOME}/.dot/local/ag/build.sh --prefix=${HOME}/.dot/local/ &>/dev/null
+	#@echo "  make install the_silver_searcher"
+	#@make --no-print-directory -C ${HOME}/.dot/local/ag/ install &>/dev/null
+	#@echo "  YouCompleteMe/install.sh"
+	#@cd bundle/YouCompleteMe && ./install.sh &>/dev/null
 
 
 
