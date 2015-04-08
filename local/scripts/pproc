@@ -1,12 +1,13 @@
 #!/bin/bash
 
 function process {
-    while read -r line || [[ -n $line ]]; do
-        if [[ $line == \#include* ]]; then
-            target="${line:10: -1}"
+    while IFS= read -r line || [[ -n $line ]]; do
+        if [[ $line == *"#include"* ]]; then
+            target="${line##*#include \"}"
+            target="${target%%\"*}"
             process "$target"
         else
-            echo "$line"
+            echo -e "$line"
         fi
     done < $1
 }
