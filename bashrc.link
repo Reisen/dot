@@ -62,6 +62,7 @@ unset colorful
 export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.dot/local/bin
 export PATH=$PATH:$HOME/.dot/local/scripts
+export PATH=$PATH:$HOME/node_modules/.bin
 
 
 
