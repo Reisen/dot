@@ -7,6 +7,8 @@ URxvt*cursorColor:      #C7A551
 URxvt*font:             xft:Droid Sans Mono:pixelsize=10:hinting=true:hintstyle=hintslight:rgba=rgb
 URxvt*font:             xft:DejaVu Sans Mono:pixelsize=11
 URxvt*font:             xft:Terminus:pixelsize=11
+URxvt*font:             xft:Consolas:pixelsize=12:hinting=true:hintstyle=hintmedium:lcdfilter=lcddefault:rgba=rgb:dpi=96
+URxvt*letterSpace:      -1
 URxvt*scrollstyle:      plain
 URxvt*scrollBar:        false
 URxvt*saveLines:        12000
