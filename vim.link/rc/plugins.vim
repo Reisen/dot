@@ -38,6 +38,8 @@ if has('vim_starting')
     Bundle 'tpope/vim-surround'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'wting/rust.vim'
+    Bundle 'raichoo/haskell-vim'
+    Bundle 'jonathanfilip/vim-lucius'
 
     call vundle#end()
 endif
