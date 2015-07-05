@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Confirm we actually want to do this.
-read -r -p "[*] Perform a fresh automatic installation of Arch. Y/N? " response
+read -r -p "[*] Perform a fresh automatic installation of Arch? Y/N? " response
 
 if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
     loadkeys uk
     echo -e 'o\nn\np\n\n\n\nw\n' | fdisk /dev/sda
-    yes | mkfs.ext4
+    yes | mkfs.ext4 /dev/sda1
     mount /dev/sda1 /mnt
     pacstrap /mnt base grub
     genfstab -p /mnt >> /mnt/etc/fstab
