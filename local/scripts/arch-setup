@@ -22,10 +22,15 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         xorg-server \
         xorg-server-utils \
         xorg-apps \
+        bspwm \
+        sxhkd \
+        python \
+        python2 \
+        rxvt-unicode \
         virtualbox-guest-modules \
         virtualbox-guest-utils
 
-    useradd -m -g users -G vboxsf -s /usr/bin/bash reisen
+    useradd -m -g users -G vboxsf -s /bin/bash reisen
 
     read -r -p "[*] Setup virtualbox as a guest? Y/N? " response
     if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
@@ -34,4 +39,7 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
 
     systemctl enable ntpd
     systemctl start ntpd
+    su - reisen
+    git clone https://github.com/Reisen/dot .dot/
+    make -C .dot/
 fi
