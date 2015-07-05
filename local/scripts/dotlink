@@ -17,5 +17,6 @@ fi
 # Link to the .link file in $HOME. As long as the Symlink isn't already there.
 if [[ ! -L "$HOME/${target_file}" ]]; then
     echo "  ln -s ${1} $HOME/${target_file}"
+    mkdir -p "$(dirname $HOME/${target_file})"
     ln -s "${1}" "$HOME/${target_file}"
 fi
