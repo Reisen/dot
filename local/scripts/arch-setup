@@ -27,6 +27,7 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         python \
         python2 \
         rxvt-unicode \
+        cmake \
         virtualbox-guest-modules \
         virtualbox-guest-utils
 
