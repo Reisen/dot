@@ -17,8 +17,8 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
     echo LANG=en_GB.UTF-8 > /mnt/etc/locale.conf
     echo KEYMAP=uk > /mnt/etc/vconsole.conf
     mkdir -p /mnt/boot/grub
-    arch-chroot mkinitcpio -p linux
-    arch-chroot grub-install --recheck /dev/sda
-    arch-chroot grub-mkconfig -o /boot/grub/grub.cfg
-    arch-chroot passwd
+    arch-chroot /mnt mkinitcpio -p linux
+    arch-chroot /mnt grub-install --recheck /dev/sda
+    arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+    arch-chroot /mnt passwd
 fi
