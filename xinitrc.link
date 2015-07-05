@@ -1,6 +1,6 @@
 VBoxClient-all
 setxkbmap -layout gb -option caps:swapescape
-feh --bg-fill ~/.config/awesome/theme/desktop.png
+feh --bg-fill ~/.dot/local/assets/f37e847ccbfd390ea43a93d41b3d03fa.jpg
 sxhkd &
 tint2 &
 exec bspwm

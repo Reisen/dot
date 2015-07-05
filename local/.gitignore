@@ -7,3 +7,5 @@
 # Unignore the scripts directory as well.
 !scripts/
 !scripts/**
+!assets/
+!assets/**
