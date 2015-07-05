@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Confirm we actually want to do this.
+read -r -p "[*] Perform a fresh automatic installation of Arch. Y/N? " response
+
+if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
+    loadkeys uk
+    echo -e 'o\nn\np\n\n\n\nw\n' | fdisk /dev/sda
+    yes | mkfs.ext4
+    mount /dev/sda1 /mnt
+    pacstrap /mnt base grub
+    genfstab -p /mnt >> /mnt/etc/fstab
+    echo box > /mnt/etc/hostname
+    ln -sf /usr/share/zoneinfo/Europe/London /mnt/etc/localtime
+    sed -i s/\#en_GB/en_GB/ /mnt/etc/locale.gen
+    arch-chroot /mnt locale-gen
+    echo LANG=en_GB.UTF-8 > /mnt/etc/locale.conf
+    echo KEYMAP=uk > /mnt/etc/vconsole.conf
+    mkdir -p /mnt/boot/grub
+    arch-chroot mkinitcpio -p linux
+    arch-chroot grub-install --recheck /dev/sda
+    arch-chroot grub-mkconfig -o /boot/grub/grub.cfg
+    arch-chroot passwd
+fi
