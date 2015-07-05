@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Confirm we actually want to do this.
+read -r -p "[*] Setup basic packages and configs? Y/N? " response
+
+if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
+    systemctl enable dhcpcd
+    systemctl start dhcpcd
+    sleep 10s
+
+    pacman-key --init
+    pacman-key --populate
+    pacman-key --refresh-keys
+    pacman-key --populate
+    yes '' | pacman -Syu \
+        base-devel \
+        rsync \
+        zip unzip \
+        ntp \
+        ssh \
+        git \
+        xorg-server \
+        xorg-server-utils \
+        xorg-apps \
+        virtualbox-guest-modules \
+        virtualbox-guest-utils
+
+    useradd -m -G users vboxsf -s /usr/bin/bash reisen
+
+    read -r -p "[*] Setup virtualbox as a guest? Y/N? " response
+    if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
+        echo -e 'vboxguest\nvboxsf\nvboxvideo' >> /etc/modules-load.d/virtualbox.conf
+    fi
+
+    systemctl enable ntpd
+    systemctl start ntpd
+fi
