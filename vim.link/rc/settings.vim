@@ -154,3 +154,4 @@ syntax on                       " Enable syntax Highlighting.
 colorscheme bluez2              " Nice dark and blue colour scheme.
 filetype on                     " Detect filetypes and run filetype.vim
 filetype plugin on              " Enable language specific settings.
+filetype indent off             " vim-plug enables this and it really screws with HTML files and such.

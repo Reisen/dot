@@ -30,8 +30,18 @@ if has('vim_starting')
      Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
      Plug 'wting/rust.vim'
      Plug 'raichoo/haskell-vim'
+     Plug 'wavded/vim-stylus'
+     Plug 'ludovicchabant/vim-gutentags'
+     Plug 'terryma/vim-multiple-cursors'
      call plug#end()
 endif
+
+
+
+" Section: Gutentags Settings
+" ------------------------------------------------------------------------------
+let g:gutentags_cache_dir=$HOME . "/.vim/backup/tags"
+let g:gutentags_exclude=["env", ".git"]
 
 
 

@@ -9,7 +9,7 @@
 nnoremap <Leader>l :NERDTreeToggle<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
-nnoremap <Leader>cf :<C-u>Unite -no-split -start-insert file_rec/async:!<CR>
+nnoremap <Leader>cf :<C-u>Unite -no-split -start-insert file_rec/git:--cached<CR>
 nnoremap <Leader>cg :<C-u>Unite -no-split file<CR>
 nnoremap <Leader>cu :<C-u>Unite -no-split file_mru<CR>
 nnoremap <Leader>cd :<C-u>Unite -no-split directory_mru<CR>
@@ -43,8 +43,8 @@ nnoremap <Leader>b :call CreateScratchBuffer()<CR>
 " Section: Autocommands
 " ------------------------------------------------------------------------------
 " Update tag files post-file save for selected filetypes.
-au BufWritePost *.c,*.h,*.cpp,*.hpp,*.hs,*.py,*.rb,*.sh,*.java silent! !ctags --append <afile>
-au BufWritePost *.hs silent! !hasktags --ctags --append <afile>
+" au BufWritePost *.c,*.h,*.cpp,*.hpp,*.hs,*.py,*.rb,*.sh,*.java silent! !ctags --append <afile>
+" au BufWritePost *.hs silent! !hasktags --ctags --append <afile>
 
 augroup BufferModifiers
     au!

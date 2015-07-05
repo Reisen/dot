@@ -1,3 +1,4 @@
+VBoxClient-all
 setxkbmap -layout gb -option caps:swapescape
 feh --bg-fill ~/.config/awesome/theme/desktop.png
 sxhkd &
