@@ -22,9 +22,11 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         xorg-server \
         xorg-server-utils \
         xorg-apps \
+        xorg-xinit \
         wget \
         bspwm \
         sxhkd \
+        feh \
         python \
         python2 \
         rxvt-unicode \
@@ -35,6 +37,7 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         ttf-dejavu \
         conky \
         jshon \
+        terminus-font \
         gtk-engine-murrine \
         virtualbox-guest-modules \
         virtualbox-guest-utils
