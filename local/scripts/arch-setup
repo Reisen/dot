@@ -56,5 +56,6 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
     cd /home/reisen
     sudo -u reisen git clone https://github.com/Reisen/dot /home/reisen/.dot/
     sudo -u reisen /home/reisen/.dot/local/scripts/arch-user
-    sudo -u reisen make -C /home/reisen/.dot/
+    cd /home/reisen/.dot
+    sudo -u reisen make
 fi
