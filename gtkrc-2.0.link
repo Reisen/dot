@@ -1,0 +1,5 @@
+include "/home/reisen/.dot/local/themes/T3K/gtk-2.0/gtkrc"
+
+style        "font"  { font_name = "Terminus 8" }
+widget_class "*"     style "font"
+gtk-font-name =      "Terminus 8"

@@ -32,10 +32,16 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         gtk-engine-aurora \
         ttf-droid \
         ttf-dejavu \
+        conky \
+        jshon \
         gtk-engine-murrine \
         virtualbox-guest-modules \
         virtualbox-guest-utils
 
+    systemctl enable ntpd
+    systemctl start ntpd
+
+    # Setup the User.
     useradd -m -g users -G vboxsf -s /bin/bash reisen
 
     read -r -p "[*] Setup virtualbox as a guest? Y/N? " response
@@ -43,8 +49,7 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         echo -e 'vboxguest\nvboxsf\nvboxvideo' >> /etc/modules-load.d/virtualbox.conf
     fi
 
-    systemctl enable ntpd
-    systemctl start ntpd
     sudo -u reisen git clone https://github.com/Reisen/dot /home/reisen/.dot/
+    sudo -u reisen /home/reisen/.dot/local/scripts/arch-user
     sudo -u reisen make -C /home/reisen/.dot/
 fi

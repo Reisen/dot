@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Confirm we actually want to do this.
+read -r -p "[*] Setup user files from fresh? Y/N? " response
+
+if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
+    mkdir -p ~/.local/share/fonts
+    cp ~/.dot/local/themes/Vision/Raleway/* ~/.local/share/fonts
+    fc-cache -vf
+    ln -sf $(readlink -f ~/.dot/local/themes/Vision/.conky-vision-icons) ~/.conky-vision-icons
+    ln -sf $(readlink -f ~/.dot/local/themes/Vision/Celsius/.conkyrc) ~/.conkyrc
+fi
