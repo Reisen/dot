@@ -28,6 +28,9 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         python2 \
         rxvt-unicode \
         cmake \
+        gtk-engines \
+        gtk-engine-aurora \
+        gtk-engine-murrine \
         virtualbox-guest-modules \
         virtualbox-guest-utils
 
@@ -40,7 +43,6 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
 
     systemctl enable ntpd
     systemctl start ntpd
-    su - reisen
-    git clone https://github.com/Reisen/dot .dot/
-    make -C .dot/
+    sudo -u reisen git clone https://github.com/Reisen/dot /home/reisen/.dot/
+    sudo -u reisen make -C /home/reisen/.dot/
 fi
