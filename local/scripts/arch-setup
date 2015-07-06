@@ -47,6 +47,7 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
 
     # Setup the User.
     useradd -m -g users -G vboxsf -s /bin/bash reisen
+    echo -e 'reisen\tALL=(ALL:ALL) ALL' >> /etc/sudoers
 
     read -r -p "[*] Setup virtualbox as a guest? Y/N? " response
     if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
