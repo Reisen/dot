@@ -30,6 +30,8 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         cmake \
         gtk-engines \
         gtk-engine-aurora \
+        ttf-droid \
+        ttf-dejavu \
         gtk-engine-murrine \
         virtualbox-guest-modules \
         virtualbox-guest-utils
