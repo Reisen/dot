@@ -27,6 +27,8 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         bspwm \
         sxhkd \
         feh \
+        tmux \
+        tint2 \
         python \
         python2 \
         rxvt-unicode \
