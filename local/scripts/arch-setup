@@ -64,5 +64,5 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
 
     sudo -u reisen /home/reisen/.dot/local/scripts/arch-user
     cd /home/reisen/.dot
-    sudo -u reisen make
+    sudo PWD=$(pwd) -u reisen make
 fi
