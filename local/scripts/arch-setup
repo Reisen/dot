@@ -56,8 +56,12 @@ if [[ $response =~ ^(yes|y|Y|Yes)$ ]]; then
         echo -e 'vboxguest\nvboxsf\nvboxvideo' >> /etc/modules-load.d/virtualbox.conf
     fi
 
-    cd /home/reisen
     sudo -u reisen git clone https://github.com/Reisen/dot /home/reisen/.dot/
+    cp /home/reisen/.dot/local/scripts/aur /root/
+    aur -si apacman
+    yes | apacman -S compton
+
+    cd /home/reisen
     sudo -u reisen /home/reisen/.dot/local/scripts/arch-user
     cd /home/reisen/.dot
     sudo -u reisen make
