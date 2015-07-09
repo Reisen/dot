@@ -4,5 +4,5 @@ feh --bg-fill ~/.dot/local/assets/f37e847ccbfd390ea43a93d41b3d03fa.jpg
 sxhkd &
 conky &
 tint2 &
-compton -f -e 0.4 -i 0.7 &
+compton -e 0.4 -i 0.8 &
 exec bspwm

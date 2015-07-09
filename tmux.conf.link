@@ -22,6 +22,9 @@ bind -r C-v split-window -v
 # Map Window Toggling.
 bind -n M-6 last-window
 
+# Pipe Pane Output to a File
+bind C-p pipe-pane -o 'cat > ~/pane.#I-#P'
+
 
 
 # Visual Settings
