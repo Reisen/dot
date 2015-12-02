@@ -8,6 +8,7 @@
 " ------------------------------------------------------------------------------
 if has('vim_starting')
      call plug#begin('~/.vim/plugged')
+     Plug 'rhysd/vim-crystal'
      Plug 'bling/vim-airline'
      Plug 'elixir-lang/vim-elixir'
      Plug 'Glench/Vim-Jinja2-Syntax'

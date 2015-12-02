@@ -6,18 +6,32 @@ URxvt*foreground:       #999999
 URxvt*background:       #171717
 URxvt*borderColor:      #171717
 URxvt*cursorColor:      #C7A551
-URxvt*font:             xft:Droid Sans Mono:pixelsize=10:hinting=true:hintstyle=hintslight:rgba=rgb
-URxvt*font:             xft:DejaVu Sans Mono:pixelsize=11
-URxvt*font:             xft:Terminus:pixelsize=8
+
+!URxvt*font:             xft:Droid Sans Mono:pixelsize=10:hinting=true:hintstyle=hintslight:rgba=rgb
+!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=11
+!URxvt*font:             xft:Terminus:pixelsize=8
+!URxvt*font:             xft:Monoid:pixelsize=8
 !URxvt*font:             xft:Consolas:pixelsize=12:hinting=true:hintstyle=hintmedium:lcdfilter=lcddefault:rgba=rgb:dpi=96
+!URxvt*font:             xft:Monoid:pixelsize=11:hinting=true:hintstyle=hintmedium:lcdfilter=lcddefault:rgba=rgb:dpi=96
 !URxvt*letterSpace:      -1
+
 URxvt*scrollstyle:      plain
 URxvt*scrollBar:        false
 URxvt*saveLines:        12000
 URxvt*cursorBlink:      true
 URxvt*cursorUnderline:  true
 
+Xft.antialias:          true
+Xft.dpi:                96
+Xft.hinting:            true
+Xft.hintstyle:          hintslight
+Xft.rgba:               rgb
 
+URxvt.font:             xft:Inconsolata:pixelsize=10
+URxvt.boldFont:         xft:Inconsolata:pixelsize=10:weight=bold
+URxvt.italicFont:       xft:Inconsolata:pixelsize=10:slant=italic
+!URxvt.lineSpace:        4
+URxvt.letterSpace:      -1
 
 ! Black
 URxvt*color0:           #202020

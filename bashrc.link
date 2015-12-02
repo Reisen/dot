@@ -11,6 +11,7 @@ alias ls='ls --color=auto --group-directories-first'
 alias clip='xclip -selection clipboard'
 alias sandbox='source env/bin/activate'
 alias snap='tarsnap --configfile ~/.config/tarsnap/tarsnap.conf'
+alias pass='MENU=fzf FREEPASS_FILE=~/.config/freepass/vault FREEPASS_NAME=reisen freepass'
 
 
 
