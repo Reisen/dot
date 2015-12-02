@@ -48,3 +48,10 @@ fu! SyncScrollFile()
     setl scb
     let &so = l:oldso
 endf
+
+fu! FZFOpen()
+    silent !git ls-tree -r --name-only HEAD | fzf > /tmp/fzfresult
+    let l:target = join(readfile("/tmp/fzfresult"), '\n')
+    exec "edit " . l:target
+    redraw!
+endf

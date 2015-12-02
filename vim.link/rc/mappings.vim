@@ -26,6 +26,15 @@ nnoremap Q @@
 nmap <Leader>a <Plug>(EasyAlign)
 
 
+
+" Section: FZF Bindings
+" ------------------------------------------------------------------------------
+
+nnoremap <Leader>f :silent !fzf<CR>:redraw!<CR>
+nnoremap <Leader>g :call FZFOpen()<CR>
+
+
+
 " Section: More Situational Bindings
 " ------------------------------------------------------------------------------
 " Use Ag to search for the identifier under the cursor.
