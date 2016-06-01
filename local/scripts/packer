@@ -24,8 +24,9 @@ makepkgconf='/etc/makepkg.conf'
 usermakepkgconf="$HOME/.makepkg.conf"
 pacmanconf='/etc/pacman.conf'
 
-RPCURL="https://aur.archlinux.org/rpc.php?type"
+RPCURL="https://aur.archlinux.org/rpc.php/rpc/?v=5&type"
 PKGURL="https://aur.archlinux.org"
+PKGBURL="https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h"
 
 if [[ -t 1 && ! $COLOR = "NO" ]]; then
   COLOR1='\e[1;39m'
@@ -235,14 +236,13 @@ rpcinfo() {
 
 pkglink() {
   rpcinfo $1
-  echo "${PKGURL}$(jshon -Q -e results -e URLPath -u < "$tmpdir/$1.info")"
+  echo "${PKGURL}$(jshon -Q -e results -a -e URLPath -u < "$tmpdir/$1.info")"
 }
 
 # downloads pkgbuild ($1), edits if $2 is set
 pkginfo() {
   if ! [[ -f "$tmpdir/$1.PKGBUILD" ]]; then
-    pkgpath=$(pkglink $1)
-    curl -Lfs "${pkgpath%/*}/PKGBUILD" > "$tmpdir/$1.PKGBUILD"
+    curl -Lfs "${PKGBURL}=${1}" > "$tmpdir/$1.PKGBUILD"
     if [[ $2 ]]; then
       # rename for syntax highlighting
       cp "$tmpdir/$1.PKGBUILD" "$tmpdir/PKGBUILD"
@@ -257,7 +257,7 @@ aurversionisnewer() {
   rpcinfo "$1"
   unset aurversion
   if existsinaur "$1"; then
-    aurversion="$(jshon -Q -e results -e Version -u < "$tmpdir/$1.info")"
+    aurversion="$(jshon -Q -e results -a -e Version -u < "$tmpdir/$1.info")"
     if [[ "$(LC_ALL=C vercmp "$aurversion" "$2")" -gt 0  ]]; then
       return 0
     fi
@@ -267,7 +267,7 @@ aurversionisnewer() {
 
 isoutofdate() {
   rpcinfo "$1"
-  [[ "$(jshon -Q -e results -e OutOfDate -u < "$tmpdir/$1.info")" = "1" ]]
+  [[ "$(jshon -Q -e results -a -e OutOfDate -u < "$tmpdir/$1.info")" = "1" ]]
 }
 
 # $1 is prompt, $2 is file
@@ -327,6 +327,7 @@ aurinstall() {
   confirm_edit "${COLOR6}Edit $install with \$EDITOR? [Y/n]${ENDCOLOR} " "$install"
 
   # Installation (makepkg and pacman)
+  rm -f *$PKGEXT
   if [[ $UID -eq 0 ]]; then
     makepkg $MAKEPKGOPTS --asroot -f
   else
@@ -334,10 +335,14 @@ aurinstall() {
   fi
 
   [[ $? -ne 0 ]] && echo "The build failed." && return 1
+  pkgtarfiles=""
+  for i in "${pkgname[@]}"; do
+    pkgtarfiles="$pkgtarfiles $i-*$PKGEXT"
+  done
   if  [[ $2 = dependency ]]; then
-    runasroot $PACMAN ${PACOPTS[@]} --asdeps -U $pkgname-*$PKGEXT
+    runasroot $PACMAN ${PACOPTS[@]} --asdeps -U $pkgtarfiles
   elif [[ $2 = explicit ]]; then
-    runasroot $PACMAN ${PACOPTS[@]} -U $pkgname-*$PKGEXT
+    runasroot $PACMAN ${PACOPTS[@]} -U $pkgtarfiles
   fi
 }
 
@@ -464,7 +469,7 @@ installhandling() {
 }
 
 run_quick_check() {
-  bigurl="https://aur.archlinux.org/rpc.php?type=multiinfo"
+  bigurl="https://aur.archlinux.org/rpc.php/rpc/?v=5&type=info"
   for p in $(pacman -Qqm); do
     bigurl="$bigurl&arg\[\]=$p"
   done

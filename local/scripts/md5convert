@@ -9,14 +9,15 @@ counter=0
 moves=0
 hashed=0
 collides=0
+mkdir -p dupes/
 for f in *; do
     if [ -f "$f" ]; then
-        hashname=$(md5sum "$f")
+        hashname=$(md5sum -- "$f")
         hash=${hashname:0:32}
-        name=$(basename "${hashname:34}")
+        name=$(basename -- "${hashname:34}")
         extension=${name##*.}
         noext=${name%.*}
-        haystack='pngPNGjpgJPGgifGIFbmpBMPjpegJPEG'
+        haystack='pngPNGjpgJPGgifGIFbmpBMPjpegJPEGmp4MP4webmWEBM'
 
         if [ -n "$name" ]; then
             if [ ${#noext} -ne 32 ]; then
@@ -24,8 +25,9 @@ for f in *; do
                     if [ -f "$hash"* ]; then
                         echo "-> File $hash.$extension already exists, ignoring $name."
                         collides=$((collides+1))
+                        mv -- "$name" "dupes/$hash.$extension"
                     else
-                        mv "$name" "$hash.$extension"
+                        mv -- "$name" "$hash.$extension"
                         moves=$((moves+1))
                     fi
                 else

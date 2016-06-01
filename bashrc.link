@@ -5,6 +5,38 @@
 
 
 
+# History
+# ------------------------------------------------------------------------------
+HISTLOCC="$HOME/.dot/local/history/$(date -u +%Y/%B/%d)"
+mkdir -p "$HISTLOCC"
+shopt -s histappend
+HISTFILE="$HISTLOCC/$(date -u +%H.%M.%S).bash.log"
+HISTSIZE=""
+HISTCONTROL=ignoredups:ignorespace
+HISTFILESIZE=""
+HISTTIMEFORMAT='%Y-%m-%d %H:%M.%S | '
+
+__fzf_history() {
+    __fzf_input="$@"
+    if [ -z "$1" ]; then
+        __fzf_input="."
+    fi
+
+    ag "$__fzf_input" ~/.dot/local/history/ --nocolor --numbers --nogroup --nofilename |\
+    sed '/^#/d' |\
+    sort |\
+    uniq -c |\
+    sort |\
+    fzf +s --tac -n2,2.. |\
+    sed 's/[ 0-9]*//'
+}
+
+bind '"\er": redraw-current-line'
+bind '"\e^": history-expand-line'
+bind '"\C-f": " \C-a`__fzf_history \C-e`\e\C-e\e^\er'
+
+
+
 # Aliases
 # ------------------------------------------------------------------------------
 alias ls='ls --color=auto --group-directories-first'
@@ -33,7 +65,9 @@ colorful() {
     local underline=$(tput smul)
 
     # Set new colourful prompt text.
-    export PS1="[\[${blue}\]\W\[${reset_color}\] \u]\[${blue}\]\$\[${reset_color}\] "
+    export PS1=$'\xCE\xBB[\[${blue}\]\W\[${reset_color}\] \u]\[${blue}\]\$\[${reset_color}\] '
+    export PS1=$'\\W${green}\xCE\xBB '
+    export PS1="\[${bright}${blue}\]λ\[${reset_color}\]\W \[${bright}${blue}\]->\[${reset_color}\] "
 
     # Set colours for man pages (less).
     export LESS_TERMCAP_mb="${blink}"
